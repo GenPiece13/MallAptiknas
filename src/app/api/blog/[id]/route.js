@@ -1,9 +1,15 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
-import { writeFile, unlink } from 'fs/promises';
-import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
 
-// 1. GET: Ambil Detail Artikel (Sudah ada, biarkan)
+// 1. Konfigurasi Cloudinary (WAJIB ADA DI SINI JUGA)
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// 2. GET: Ambil Detail Artikel (Tidak Berubah)
 export async function GET(request, { params }) {
     try {
         const { id } = await params;
@@ -19,7 +25,7 @@ export async function GET(request, { params }) {
     }
 }
 
-// 2. PUT: Update Artikel (TAMBAHAN BARU)
+// 3. PUT: Update Artikel (DIPERBAIKI: Pakai Cloudinary)
 export async function PUT(request, { params }) {
     try {
         const { id } = await params;
@@ -36,27 +42,32 @@ export async function PUT(request, { params }) {
         const file = data.get('imageFile');
         let imageUrl = null;
 
-        // Logika Upload Gambar Baru (Jika user upload gambar pengganti)
-        if (file && typeof file !== 'string') {
-            const bytes = await file.arrayBuffer();
-            const buffer = Buffer.from(bytes);
-            const fileName = `${Date.now()}-${file.name.replaceAll(" ", "_")}`;
-            const uploadDir = path.join(process.cwd(), 'public/uploads');
-            const filePath = path.join(uploadDir, fileName);
+        // Logika Upload Gambar Baru ke Cloudinary
+        if (file && typeof file !== 'string' && file.size > 0) {
+            // Ubah file ke Base64
+            const arrayBuffer = await file.arrayBuffer();
+            const buffer = Buffer.from(arrayBuffer);
+            const fileBase64 = buffer.toString('base64');
+            const fileUri = `data:${file.type};base64,${fileBase64}`;
 
-            await writeFile(filePath, buffer);
-            imageUrl = `/uploads/${fileName}`;
+            // Upload ke Cloudinary
+            const cloudResult = await cloudinary.uploader.upload(fileUri, {
+                folder: 'aptiknas_uploads',
+                resource_type: 'auto',
+            });
+
+            imageUrl = cloudResult.secure_url;
         }
 
         // Query Database
         if (imageUrl) {
-            // Jika ada gambar baru, update gambar juga
+            // Jika ada gambar baru, update kolom image
             await pool.query(
                 "UPDATE posts SET title=?, category=?, author=?, content=?, image=?, youtubeUrl=? WHERE id=?",
                 [title, category, author, content, imageUrl, youtubeUrl, id]
             );
         } else {
-            // Jika TIDAK ada gambar baru, jangan ubah kolom image
+            // Jika TIDAK ada gambar baru, biarkan gambar lama
             await pool.query(
                 "UPDATE posts SET title=?, category=?, author=?, content=?, youtubeUrl=? WHERE id=?",
                 [title, category, author, content, youtubeUrl, id]
@@ -67,11 +78,11 @@ export async function PUT(request, { params }) {
 
     } catch (error) {
         console.error("Update Error:", error);
-        return NextResponse.json({ error: "Gagal update data" }, { status: 500 });
+        return NextResponse.json({ error: "Gagal update data: " + error.message }, { status: 500 });
     }
 }
 
-// 3. DELETE: Hapus artikel (Sudah ada, biarkan)
+// 4. DELETE: Hapus artikel (Tidak Berubah)
 export async function DELETE(request, { params }) {
     try {
         const { id } = await params;
