@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
-import { writeFile } from 'fs/promises';
-import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
+
+// Konfigurasi Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // GET: Ambil semua artikel
 export async function GET() {
@@ -13,7 +19,7 @@ export async function GET() {
     }
 }
 
-// POST: Tambah artikel baru + Upload Gambar
+// POST: Tambah artikel baru + Upload ke Cloudinary
 export async function POST(request) {
     try {
         const data = await request.formData();
@@ -26,24 +32,29 @@ export async function POST(request) {
 
         let imageUrl = '';
 
-        // Logika Simpan File ke folder public/uploads
-        if (file) {
-            const bytes = await file.arrayBuffer();
-            const buffer = Buffer.from(bytes);
+        if (file && file.size > 0) {
+            // 1. Ubah file menjadi format Buffer
+            const arrayBuffer = await file.arrayBuffer();
+            const buffer = Buffer.from(arrayBuffer);
 
-            // Buat nama file unik
-            const fileName = `${Date.now()}-${file.name.replaceAll(" ", "_")}`;
-            const uploadDir = path.join(process.cwd(), 'public/uploads');
-            const filePath = path.join(uploadDir, fileName);
+            // 2. Ubah Buffer menjadi Base64 agar bisa diupload langsung
+            const fileBase64 = buffer.toString('base64');
+            const fileUri = `data:${file.type};base64,${fileBase64}`;
 
-            // Simpan file fisik
-            await writeFile(filePath, buffer);
-            imageUrl = `/uploads/${fileName}`; // Path yang disimpan di DB
+            // 3. Upload ke Cloudinary
+            const cloudResult = await cloudinary.uploader.upload(fileUri, {
+                folder: 'aptiknas_uploads', // Nama folder di Cloudinary
+                resource_type: 'auto',
+            });
+
+            // 4. Ambil URL aman (HTTPS) dari hasil upload
+            imageUrl = cloudResult.secure_url;
         } else {
-            imageUrl = 'https://via.placeholder.com/600x400'; // Default jika tidak ada gambar
+            // Gambar default jika user tidak upload
+            imageUrl = 'https://via.placeholder.com/600x400';
         }
 
-        // Simpan ke MySQL
+        // Simpan data ke MySQL (URL gambar mengarah ke Cloudinary)
         const [result] = await pool.query(
             "INSERT INTO posts (title, category, author, content, image, youtubeUrl) VALUES (?, ?, ?, ?, ?, ?)",
             [title, category, author, content, imageUrl, youtubeUrl]
@@ -52,7 +63,7 @@ export async function POST(request) {
         return NextResponse.json({ message: "Sukses", id: result.insertId });
 
     } catch (error) {
-        console.error(error);
-        return NextResponse.json({ error: "Gagal menyimpan data" }, { status: 500 });
+        console.error("Upload Error:", error);
+        return NextResponse.json({ error: "Gagal menyimpan data: " + error.message }, { status: 500 });
     }
 }
