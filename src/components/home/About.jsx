@@ -1,4 +1,6 @@
 // src/components/home/About.jsx
+"use client"; // Diperlukan untuk style jsx
+
 const About = () => {
     return (
         <>
@@ -134,15 +136,16 @@ const About = () => {
                         </div>
                     </div>
 
-                    {/* SECTION BARU: ROADMAP PENGEMBANGAN (Style Timeline Horizontal) */}
+                    {/* SECTION BARU: ROADMAP PENGEMBANGAN */}
                     <div style={{ marginTop: '60px' }}>
                         <div className="cp-head">
                             <h3 className="cp-title" style={{ fontSize: '1.8rem' }}>Roadmap <span>Pengembangan</span></h3>
                             <p className="cp-sub">Langkah bertahap menuju peluncuran nasional.</p>
                         </div>
 
-                        {/* Menggunakan Class cp-timeline dari globals.css agar style sama persis */}
-                        <div className="cp-timeline reveal" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+                        {/* PERBAIKAN DI SINI: Gunakan Class 'roadmap-custom' alih-alih inline style */}
+                        <div className="cp-timeline reveal roadmap-custom">
+
                             {/* Garis Penghubung */}
                             <div className="cp-timeline-line" style={{ left: '16%', right: '16%' }}></div>
 
@@ -176,13 +179,6 @@ const About = () => {
                                 <div className="cp-timeline-desc">Ekspansi layanan dan skala operasional.</div>
                             </div>
                         </div>
-
-                        {/* Tombol CTA di bawah Roadmap */}
-                        <div style={{ marginTop: '40px', textAlign: 'center' }}>
-                            <a href="#" className="cp-btn-full" style={{ maxWidth: '400px', margin: '0 auto' }}>
-                                Bergabung dalam Perjalanan Ini <i className="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
                     </div>
 
                 </div>
@@ -191,7 +187,6 @@ const About = () => {
             {/* --- MISI KAMI --- */}
             <section id="misi" className="cp-section">
                 <div className="container">
-                    {/* Header Center */}
                     <div className="cp-head">
                         <span className="cp-kicker">TENTANG KAMI</span>
                         <h2 className="cp-title">Misi <span>Kami</span></h2>
@@ -199,37 +194,49 @@ const About = () => {
                     </div>
 
                     <div className="cp-mission-grid">
-                        {/* KOLOM KIRI: Narasi & Value Pills */}
                         <div className="cp-mission-left reveal">
-                            <h3>Mendobrak Tembok Jarak & Waktu</h3>
+                            <h3>Mendobrak Tembok <br /> Jarak & Waktu</h3>
 
-                            <p>
-                                Kami memastikan siapa saja, di mana saja, bisa mendapatkan akses yang
-                                sama terhadap produk IT dan kesempatan ekonomi.
-                            </p>
-                            <p>
-                                Kami terus berinovasi untuk membantu distributor, reseller, dan UMKM
-                                naik kelas—dengan proses yang lebih cepat, transparan, dan terukur.
-                            </p>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '30px' }}>
+                                <div style={{
+                                    width: '100%',
+                                    height: '240px',
+                                    borderRadius: '16px',
+                                    overflow: 'hidden',
+                                    boxShadow: '0 15px 40px rgba(0, 174, 239, 0.15)',
+                                    border: '1px solid rgba(0,0,0,0.05)'
+                                }}>
+                                    <img
+                                        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                                        alt="Kolaborasi Tim Teknologi"
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                    />
+                                </div>
+                                <div>
+                                    <p style={{ marginBottom: '16px' }}>
+                                        Kami memastikan siapa saja, di mana saja, bisa mendapatkan akses yang
+                                        sama terhadap produk IT dan kesempatan ekonomi.
+                                    </p>
+                                    <p>
+                                        Kami terus berinovasi untuk membantu distributor, reseller, dan UMKM
+                                        naik kelas—dengan proses yang lebih cepat, transparan, dan terukur.
+                                    </p>
+                                </div>
+                            </div>
 
-                            {/* Pills Group dengan Variasi Warna */}
                             <div className="cp-pill-group">
-                                {/* Biru: Fokus Konsumen */}
                                 <div className="cp-pill blue">
                                     <i className="fa-solid fa-circle-check"></i> Fokus pada Konsumen
                                 </div>
-                                {/* Hijau: Pola Pikir Bertumbuh */}
                                 <div className="cp-pill green">
                                     <i className="fa-solid fa-chart-line"></i> Pola Pikir Bertumbuh
                                 </div>
-                                {/* Hijau: Buat Menjadi Nyata */}
                                 <div className="cp-pill green">
                                     <i className="fa-solid fa-bolt"></i> Buat Menjadi Nyata
                                 </div>
                             </div>
                         </div>
 
-                        {/* KOLOM KANAN: Kartu 'Yang Kami Percayai' */}
                         <div className="cp-mission-right reveal">
                             <h4>Yang Kami Percayai</h4>
                             <div className="cp-beliefs">
@@ -266,6 +273,19 @@ const About = () => {
                     </div>
                 </div>
             </section>
+
+            {/* STYLE KHUSUS UNTUK MEMPERBAIKI RESPONSIVE ROADMAP */}
+            <style jsx>{`
+                /* Hanya paksa 3 kolom jika di DESKTOP (lebar > 992px).
+                   Di Mobile, style ini tidak akan berlaku, sehingga
+                   akan kembali ke default global.css (1 kolom).
+                */
+                @media (min-width: 993px) {
+                    .roadmap-custom {
+                        grid-template-columns: repeat(3, 1fr) !important;
+                    }
+                }
+            `}</style>
         </>
     );
 };
