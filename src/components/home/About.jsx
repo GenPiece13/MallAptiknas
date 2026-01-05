@@ -21,7 +21,7 @@ const About = () => {
                                         <i className="fa-solid fa-landmark"></i>
                                     </div>
                                     <div>
-                                        <h3 className="cp-panel-title">Warisan 32 Tahun APTIKNAS</h3>
+                                        <h3 className="cp-panel-title">Warisan 35 Tahun APTIKNAS</h3>
                                         <div className="cp-badge">1991 – Sekarang</div>
                                     </div>
                                 </div>
@@ -31,7 +31,7 @@ const About = () => {
                                     Pengalaman komunitas inilah yang menjadi fondasi lahirnya ekosistem MallAptiknas.
                                 </p>
                                 <div className="cp-metric">
-                                    <div className="cp-metric-num">32 Tahun</div>
+                                    <div className="cp-metric-num">35 Tahun</div>
                                     <div className="cp-metric-label">Asosiasi TIK tertua</div>
                                 </div>
                             </div>
