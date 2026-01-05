@@ -1,12 +1,12 @@
 // src/components/home/Hero.jsx
-"use client"; // Pastikan use client karena kita pakai style jsx
+"use client";
 
 const Hero = () => {
     return (
         <section className="hero">
             <div className="hero-content reveal is-visible">
 
-                {/* 1. LOGO DITAMBAHKAN DI SINI */}
+                {/* 1. LOGO (Dipertahankan sesuai request) */}
                 <div className="logo-wrapper">
                     <img
                         src="/img/Logo MA me.png"
@@ -15,9 +15,13 @@ const Hero = () => {
                     />
                 </div>
 
-                {/* 2. TEXT MALLAPTIKNAS DISESUAIKAN WARNANYA */}
+                {/* 2. TEKS DENGAN WARNA SESUAI LOGO */}
                 <h1>
-                    <span className="brand-text">MallAptiknas</span>: <br />
+                    <span className="text-mall">Mall</span>
+                    <span className="text-ap">AP</span>
+                    <span className="text-tik">TIK</span>
+                    <span className="text-nas">NAS</span>
+                    : <br />
                     Platform Terintegrasi Untuk Distribusi Produk IT
                 </h1>
 
@@ -29,34 +33,47 @@ const Hero = () => {
                 </div>
             </div>
 
-            {/* 3. STYLE KHUSUS UNTUK KONTROL UKURAN RESPONSIVE */}
+            {/* 3. STYLE KHUSUS */}
             <style jsx>{`
-                /* Wrapper agar logo center */
+                /* Layout Logo */
                 .logo-wrapper {
                     display: flex;
                     justify-content: center;
                     margin-bottom: 1.5rem;
                 }
 
-                /* Kontrol Ketat Ukuran Logo */
+                /* Kontrol Ukuran Logo Responsif */
                 .hero-logo {
-                    width: 160px; /* Ukuran Desktop */
+                    width: 160px; /* Desktop */
                     height: auto;
                     object-fit: contain;
                     display: block;
-                    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Sedikit bayangan agar pop-up di bg gelap */
+                    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
                 }
 
-                /* Warna Teks Brand (Mengambil dari globals.css --brand-blue) */
-                .brand-text {
-                    color: var(--brand-blue); 
-                    text-shadow: 0 0 20px rgba(0, 174, 239, 0.4); /* Efek glow */
+                /* Pewarnaan Teks Sesuai Identitas Brand */
+                /* Menggunakan variabel dari globals.css */
+                
+                .text-mall { 
+                    color: #ffffff; /* Menggunakan Putih agar terbaca jelas di background gelap */
+                }
+                
+                .text-ap { 
+                    color: var(--brand-red); /* Merah */
+                }
+                
+                .text-tik { 
+                    color: var(--brand-blue); /* Biru/Cyan */
+                }
+                
+                .text-nas { 
+                    color: var(--brand-green); /* Hijau */
                 }
 
-                /* Responsive Mobile */
+                /* Mobile Adjustment */
                 @media (max-width: 768px) {
                     .hero-logo {
-                        width: 110px; /* Ukuran Mobile lebih kecil */
+                        width: 110px; /* Ukuran Mobile */
                         margin-bottom: 1rem;
                     }
                 }
