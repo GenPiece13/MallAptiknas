@@ -44,7 +44,7 @@ const Hero = () => {
 
                 /* Kontrol Ukuran Logo Responsif */
                 .hero-logo {
-                    width: 160px; /* Desktop */
+                    width: 250px; /* Desktop */
                     height: auto;
                     object-fit: contain;
                     display: block;
@@ -55,7 +55,7 @@ const Hero = () => {
                 /* Menggunakan variabel dari globals.css */
                 
                 .text-mall { 
-                    color: #ffffff; /* Menggunakan Putih agar terbaca jelas di background gelap */
+                    color: var(--brand-black); /* Menggunakan Putih agar terbaca jelas di background gelap */
                 }
                 
                 .text-ap { 
