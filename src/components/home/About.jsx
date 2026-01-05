@@ -1,7 +1,8 @@
+// src/components/home/About.jsx
 const About = () => {
     return (
         <>
-            {/* --- SEJARAH --- */}
+            {/* --- SEJARAH & ROADMAP --- */}
             <section id="sejarah" className="cp-section cp-section--alt">
                 <div className="container">
                     <div className="cp-head">
@@ -10,11 +11,12 @@ const About = () => {
                         <p className="cp-sub">Dari akar komunitas industri TIK hingga hadirnya MallAptiknas sebagai platform terintegrasi.</p>
                     </div>
 
-                    <div className="cp-history-grid">
-                        {/* LEFT COLUMN */}
-                        <div className="cp-stack">
+                    {/* GRID ATAS: SEJARAH (Kiri) vs SOLUSI (Kanan) */}
+                    <div className="cp-history-grid" style={{ alignItems: 'stretch' }}>
 
-                            {/* --- CARD 1: WARISAN 32 TAHUN (Yang sudah diperbarui sebelumnya) --- */}
+                        {/* LEFT COLUMN: History, Legal, People */}
+                        <div className="cp-stack">
+                            {/* CARD 1: WARISAN */}
                             <div className="cp-panel reveal">
                                 <div className="cp-panel-top">
                                     <div className="cp-icon-badge">
@@ -36,21 +38,17 @@ const About = () => {
                                 </div>
                             </div>
 
-                            {/* --- CARD BARU: PENDIRIAN & LEGALITAS --- */}
+                            {/* CARD 2: LEGALITAS */}
                             <div className="cp-panel reveal">
                                 <div className="cp-panel-top">
-                                    {/* Ikon Timbangan (Legalitas) */}
                                     <div className="cp-icon-badge">
                                         <i className="fa-solid fa-scale-balanced"></i>
                                     </div>
                                     <div>
                                         <h3 className="cp-panel-title">Pendirian & Legalitas</h3>
-                                        {/* Deskripsi kecil di bawah judul */}
                                         <p className="cp-mini">Landasan organisasi untuk membangun ekosistem yang kredibel.</p>
                                     </div>
                                 </div>
-
-                                {/* List dengan Centang Biru */}
                                 <div className="cp-check-list">
                                     <div className="cp-check-item">
                                         <i className="fa-solid fa-circle-check"></i>
@@ -63,7 +61,7 @@ const About = () => {
                                 </div>
                             </div>
 
-                            {/* --- CARD 3: KEPENGURUSAN (Tetap ada di bawah) --- */}
+                            {/* CARD 3: KEPENGURUSAN */}
                             <div className="cp-panel reveal">
                                 <div className="cp-panel-top">
                                     <div className="cp-icon-badge"><i className="fa-solid fa-users-gear"></i></div>
@@ -80,10 +78,14 @@ const About = () => {
                                 <div className="cp-note">SK KUMHAM RI: AHU-000091.AH.01.08.TAHUN 2023</div>
                             </div>
                         </div>
-                        {/* RIGHT COLUMN */}
-                        <div className="cp-stack">
-                            {/* --- CARD 1: SOLUSI UNTUK ANGGOTA (REPLIKASI DESAIN) --- */}
-                            <div className="cp-panel cp-panel--soft reveal">
+
+                        {/* RIGHT COLUMN: SOLUSI (Full Height) */}
+                        <div className="cp-stack" style={{ height: '100%' }}>
+                            <div className="cp-panel cp-panel--soft reveal" style={{
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column'
+                            }}>
                                 <div className="cp-panel-top">
                                     <div className="cp-icon-badge cp-icon-badge--soft">
                                         <i className="fa-solid fa-code-branch"></i>
@@ -94,27 +96,23 @@ const About = () => {
                                     </div>
                                 </div>
 
-                                {/* Grid Masalah (2x2) */}
-                                <div className="cp-problem-grid">
-                                    {/* Item 1 */}
+                                {/* Grid Masalah (Flex Grow agar mengisi ruang kosong) */}
+                                <div className="cp-problem-grid" style={{ flexGrow: 1 }}>
                                     <div className="cp-mini-card">
                                         <i className="fa-solid fa-link-slash"></i>
                                         <h4>Fragmentasi Distribusi</h4>
                                         <p>Rantai pasok terpisah-pisah dan tidak terintegrasi.</p>
                                     </div>
-                                    {/* Item 2 */}
                                     <div className="cp-mini-card">
                                         <i className="fa-solid fa-lock"></i>
                                         <h4>Akses Terbatas</h4>
                                         <p>UMKM sulit akses ke produk IT dengan harga kompetitif.</p>
                                     </div>
-                                    {/* Item 3 */}
                                     <div className="cp-mini-card">
                                         <i className="fa-solid fa-arrows-rotate"></i>
                                         <h4>Inefisiensi Operasional</h4>
                                         <p>Inventory manual dan tidak terpusat.</p>
                                     </div>
-                                    {/* Item 4 */}
                                     <div className="cp-mini-card">
                                         <i className="fa-solid fa-shield-halved"></i>
                                         <h4>Keaslian Produk</h4>
@@ -122,8 +120,8 @@ const About = () => {
                                     </div>
                                 </div>
 
-                                {/* Kotak Bawah: Lahirnya MallAptiknas */}
-                                <div className="cp-solution-box">
+                                {/* Kotak Bawah: Lahirnya MallAptiknas (Margin Top Auto agar selalu di bawah) */}
+                                <div className="cp-solution-box" style={{ marginTop: 'auto' }}>
                                     <div className="cp-solution-bar"></div>
                                     <div className="cp-solution-content">
                                         <h4>Lahirnya MallAptiknas</h4>
@@ -133,62 +131,64 @@ const About = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            {/* --- CARD 2: ROADMAP PENGEMBANGAN (DESAIN BARU) --- */}
-                            <div className="cp-panel reveal">
-                                <div className="cp-panel-top">
-                                    <div className="cp-icon-badge">
-                                        <i className="fa-solid fa-road"></i>
-                                    </div>
-                                    <div>
-                                        <h3 className="cp-panel-title">Roadmap Pengembangan</h3>
-                                        <p className="cp-mini">Langkah bertahap menuju peluncuran nasional.</p>
-                                    </div>
-                                </div>
-
-                                {/* List Timeline */}
-                                <div className="cp-roadmap-list">
-
-                                    {/* Tahun 2024 */}
-                                    <div className="cp-roadmap-item">
-                                        <div className="cp-roadmap-year">2024</div>
-                                        <div className="cp-roadmap-content">
-                                            <h4>Development Aplikasi Dimulai</h4>
-                                            <p>Fondasi platform & arsitektur dibangun.</p>
-                                        </div>
-                                    </div>
-
-                                    {/* Tahun 2025 */}
-                                    <div className="cp-roadmap-item">
-                                        <div className="cp-roadmap-year">2025</div>
-                                        <div className="cp-roadmap-content">
-                                            <h4>Testing & Onboarding Mitra</h4>
-                                            <p>Integrasi supplier, distributor, reseller.</p>
-                                        </div>
-                                    </div>
-
-                                    {/* Tahun 2026 */}
-                                    <div className="cp-roadmap-item">
-                                        <div className="cp-roadmap-year">2026</div>
-                                        <div className="cp-roadmap-content">
-                                            <h4>Launching Nasional</h4>
-                                            <p>Ekspansi layanan dan skala operasional.</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                {/* Tombol Merah Full Width */}
-                                <a href="#" className="cp-btn-full">
-                                    Bergabung dalam Perjalanan Ini <i className="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
+
+                    {/* SECTION BARU: ROADMAP PENGEMBANGAN (Style Timeline Horizontal) */}
+                    <div style={{ marginTop: '60px' }}>
+                        <div className="cp-head">
+                            <h3 className="cp-title" style={{ fontSize: '1.8rem' }}>Roadmap <span>Pengembangan</span></h3>
+                            <p className="cp-sub">Langkah bertahap menuju peluncuran nasional.</p>
+                        </div>
+
+                        {/* Menggunakan Class cp-timeline dari globals.css agar style sama persis */}
+                        <div className="cp-timeline reveal" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+                            {/* Garis Penghubung */}
+                            <div className="cp-timeline-line" style={{ left: '16%', right: '16%' }}></div>
+
+                            {/* ITEM 2024 */}
+                            <div className="cp-timeline-item">
+                                <div className="cp-timeline-dot">
+                                    <i className="fa-solid fa-code"></i>
+                                </div>
+                                <div className="cp-timeline-year">2024</div>
+                                <div className="cp-timeline-title">Development Aplikasi Dimulai</div>
+                                <div className="cp-timeline-desc">Fondasi platform & arsitektur dibangun.</div>
+                            </div>
+
+                            {/* ITEM 2025 */}
+                            <div className="cp-timeline-item">
+                                <div className="cp-timeline-dot">
+                                    <i className="fa-solid fa-flask"></i>
+                                </div>
+                                <div className="cp-timeline-year">2025</div>
+                                <div className="cp-timeline-title">Testing & Onboarding Mitra</div>
+                                <div className="cp-timeline-desc">Integrasi supplier, distributor, reseller.</div>
+                            </div>
+
+                            {/* ITEM 2026 */}
+                            <div className="cp-timeline-item">
+                                <div className="cp-timeline-dot">
+                                    <i className="fa-solid fa-rocket"></i>
+                                </div>
+                                <div className="cp-timeline-year">2026</div>
+                                <div className="cp-timeline-title">Launching Nasional</div>
+                                <div className="cp-timeline-desc">Ekspansi layanan dan skala operasional.</div>
+                            </div>
+                        </div>
+
+                        {/* Tombol CTA di bawah Roadmap */}
+                        <div style={{ marginTop: '40px', textAlign: 'center' }}>
+                            <a href="#" className="cp-btn-full" style={{ maxWidth: '400px', margin: '0 auto' }}>
+                                Bergabung dalam Perjalanan Ini <i className="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
-            {/* --- MISI KAMI (REPLIKASI DESAIN) --- */}
+            {/* --- MISI KAMI --- */}
             <section id="misi" className="cp-section">
                 <div className="container">
                     {/* Header Center */}
@@ -233,8 +233,6 @@ const About = () => {
                         <div className="cp-mission-right reveal">
                             <h4>Yang Kami Percayai</h4>
                             <div className="cp-beliefs">
-
-                                {/* Kartu 1 */}
                                 <div className="cp-belief">
                                     <div className="cp-belief-ic"><i className="fa-solid fa-globe"></i></div>
                                     <div>
@@ -242,8 +240,6 @@ const About = () => {
                                         <div className="cp-belief-desc">Ekosistem digital yang menghubungkan rantai pasok produk IT dari supplier hingga konsumen.</div>
                                     </div>
                                 </div>
-
-                                {/* Kartu 2 */}
                                 <div className="cp-belief">
                                     <div className="cp-belief-ic"><i className="fa-solid fa-hand-holding-hand"></i></div>
                                     <div>
@@ -251,8 +247,6 @@ const About = () => {
                                         <div className="cp-belief-desc">Mendukung distributor, reseller, dan UMKM dengan alat & akses untuk berkembang di industri teknologi.</div>
                                     </div>
                                 </div>
-
-                                {/* Kartu 3 */}
                                 <div className="cp-belief">
                                     <div className="cp-belief-ic"><i className="fa-solid fa-arrows-rotate"></i></div>
                                     <div>
@@ -260,8 +254,6 @@ const About = () => {
                                         <div className="cp-belief-desc">Mendorong adopsi teknologi untuk efisiensi, transparansi, dan standardisasi proses.</div>
                                     </div>
                                 </div>
-
-                                {/* Kartu 4 */}
                                 <div className="cp-belief">
                                     <div className="cp-belief-ic"><i className="fa-solid fa-shield-halved"></i></div>
                                     <div>
@@ -269,7 +261,6 @@ const About = () => {
                                         <div className="cp-belief-desc">Jaminan keaslian produk, dukungan teknis, dan komunitas yang terus berkembang.</div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
