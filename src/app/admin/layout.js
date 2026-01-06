@@ -5,6 +5,9 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+// --- PENTING: IMPOR CSS DI SINI ---
+import './admin.css';
+// ----------------------------------
 
 export default function AdminLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -39,6 +42,7 @@ export default function AdminLayout({ children }) {
             <Link href="/admin/dashboard" className={`nav-item ${pathname === '/admin/dashboard' ? 'active' : ''}`}>
               <i>📊</i> Dashboard
             </Link>
+            {/* Menggunakan includes() agar sub-halaman tetap aktif */}
             <Link href="/admin/users" className={`nav-item ${pathname.includes('/admin/users') ? 'active' : ''}`}>
               <i>👥</i> Users
             </Link>
