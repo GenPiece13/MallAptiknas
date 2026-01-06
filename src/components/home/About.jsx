@@ -1,10 +1,10 @@
 // src/components/home/About.jsx
-"use client"; // Diperlukan untuk style jsx
+"use client";
 
 const About = () => {
     return (
         <>
-            {/* --- SEJARAH & ROADMAP --- */}
+            {/* --- SEJARAH & TIMELINE --- */}
             <section id="sejarah" className="cp-section cp-section--alt">
                 <div className="container">
                     <div className="cp-head">
@@ -13,9 +13,8 @@ const About = () => {
                         <p className="cp-sub">Dari akar komunitas industri TIK hingga hadirnya MallAptiknas sebagai platform terintegrasi.</p>
                     </div>
 
-                    {/* GRID ATAS: SEJARAH (Kiri) vs SOLUSI (Kanan) */}
+                    {/* GRID ATAS: INFO DETAIL (Kiri) vs SOLUSI (Kanan) - TETAP SAMA */}
                     <div className="cp-history-grid" style={{ alignItems: 'stretch' }}>
-
                         {/* LEFT COLUMN: History, Legal, People */}
                         <div className="cp-stack">
                             {/* CARD 1: WARISAN */}
@@ -98,7 +97,7 @@ const About = () => {
                                     </div>
                                 </div>
 
-                                {/* Grid Masalah (Flex Grow agar mengisi ruang kosong) */}
+                                {/* Grid Masalah */}
                                 <div className="cp-problem-grid" style={{ flexGrow: 1 }}>
                                     <div className="cp-mini-card">
                                         <i className="fa-solid fa-link-slash"></i>
@@ -122,7 +121,7 @@ const About = () => {
                                     </div>
                                 </div>
 
-                                {/* Kotak Bawah: Lahirnya MallAptiknas (Margin Top Auto agar selalu di bawah) */}
+                                {/* Kotak Bawah: Lahirnya MallAptiknas */}
                                 <div className="cp-solution-box" style={{ marginTop: 'auto' }}>
                                     <div className="cp-solution-bar"></div>
                                     <div className="cp-solution-content">
@@ -136,47 +135,55 @@ const About = () => {
                         </div>
                     </div>
 
-                    {/* SECTION BARU: ROADMAP PENGEMBANGAN */}
-                    <div style={{ marginTop: '60px' }}>
+                    {/* --- BAGIAN BAWAH: TIMELINE PERJALANAN (DIPINDAHKAN KE SINI) --- */}
+                    <div style={{ marginTop: '80px' }}>
                         <div className="cp-head">
-                            <h3 className="cp-title" style={{ fontSize: '1.8rem' }}>Roadmap <span>Pengembangan</span></h3>
-                            <p className="cp-sub">Langkah bertahap menuju peluncuran nasional.</p>
+                            <h3 className="cp-title" style={{ fontSize: '1.8rem' }}>Timeline <span>Perjalanan</span></h3>
+                            <p className="cp-sub">Milestone utama dari komunitas hingga platform siap peluncuran.</p>
                         </div>
 
-                        {/* PERBAIKAN DI SINI: Gunakan Class 'roadmap-custom' alih-alih inline style */}
-                        <div className="cp-timeline reveal roadmap-custom">
-
+                        <div className="cp-timeline reveal">
                             {/* Garis Penghubung */}
-                            <div className="cp-timeline-line" style={{ left: '16%', right: '16%' }}></div>
+                            <div className="cp-timeline-line"></div>
 
-                            {/* ITEM 2024 */}
+                            {/* ITEM 1: 1991 */}
                             <div className="cp-timeline-item">
-                                <div className="cp-timeline-dot">
-                                    <i className="fa-solid fa-code"></i>
-                                </div>
+                                <div className="cp-timeline-dot"><i className="fa-solid fa-flag"></i></div>
+                                <div className="cp-timeline-year">1991</div>
+                                <div className="cp-timeline-title">APKOMINDO Didirikan</div>
+                                <div className="cp-timeline-desc">Asosiasi pengusaha komputer Indonesia berdiri.</div>
+                            </div>
+
+                            {/* ITEM 2: 2017 */}
+                            <div className="cp-timeline-item">
+                                <div className="cp-timeline-dot"><i className="fa-solid fa-shuffle"></i></div>
+                                <div className="cp-timeline-year">2017</div>
+                                <div className="cp-timeline-title">Transformasi ke APTIKNAS</div>
+                                <div className="cp-timeline-desc">Deklarasi organisasi dan legalitas.</div>
+                            </div>
+
+                            {/* ITEM 3: 2022 */}
+                            <div className="cp-timeline-item">
+                                <div className="cp-timeline-dot"><i className="fa-solid fa-people-roof"></i></div>
+                                <div className="cp-timeline-year">2022</div>
+                                <div className="cp-timeline-title">Kepengurusan Baru</div>
+                                <div className="cp-timeline-desc">Periode 2022–2027 dengan visi transformasi digital.</div>
+                            </div>
+
+                            {/* ITEM 4: 2024 */}
+                            <div className="cp-timeline-item">
+                                <div className="cp-timeline-dot"><i className="fa-solid fa-code"></i></div>
                                 <div className="cp-timeline-year">2024</div>
-                                <div className="cp-timeline-title">Development Aplikasi Dimulai</div>
-                                <div className="cp-timeline-desc">Fondasi platform & arsitektur dibangun.</div>
+                                <div className="cp-timeline-title">Dev. MallAptiknas</div>
+                                <div className="cp-timeline-desc">Pengembangan platform terintegrasi dimulai.</div>
                             </div>
 
-                            {/* ITEM 2025 */}
+                            {/* ITEM 5: 2026 */}
                             <div className="cp-timeline-item">
-                                <div className="cp-timeline-dot">
-                                    <i className="fa-solid fa-flask"></i>
-                                </div>
-                                <div className="cp-timeline-year">2025</div>
-                                <div className="cp-timeline-title">Testing & Onboarding Mitra</div>
-                                <div className="cp-timeline-desc">Integrasi supplier, distributor, reseller.</div>
-                            </div>
-
-                            {/* ITEM 2026 */}
-                            <div className="cp-timeline-item">
-                                <div className="cp-timeline-dot">
-                                    <i className="fa-solid fa-rocket"></i>
-                                </div>
+                                <div className="cp-timeline-dot"><i className="fa-solid fa-rocket"></i></div>
                                 <div className="cp-timeline-year">2026</div>
-                                <div className="cp-timeline-title">Launching Nasional</div>
-                                <div className="cp-timeline-desc">Ekspansi layanan dan skala operasional.</div>
+                                <div className="cp-timeline-title">Target Launching</div>
+                                <div className="cp-timeline-desc">Peluncuran nasional dan ekspansi layanan.</div>
                             </div>
                         </div>
                     </div>
@@ -184,7 +191,7 @@ const About = () => {
                 </div>
             </section>
 
-            {/* --- MISI KAMI --- */}
+            {/* --- MISI KAMI (TETAP SAMA) --- */}
             <section id="misi" className="cp-section">
                 <div className="container">
                     <div className="cp-head">
@@ -273,19 +280,6 @@ const About = () => {
                     </div>
                 </div>
             </section>
-
-            {/* STYLE KHUSUS UNTUK MEMPERBAIKI RESPONSIVE ROADMAP */}
-            <style jsx>{`
-                /* Hanya paksa 3 kolom jika di DESKTOP (lebar > 992px).
-                   Di Mobile, style ini tidak akan berlaku, sehingga
-                   akan kembali ke default global.css (1 kolom).
-                */
-                @media (min-width: 993px) {
-                    .roadmap-custom {
-                        grid-template-columns: repeat(3, 1fr) !important;
-                    }
-                }
-            `}</style>
         </>
     );
 };

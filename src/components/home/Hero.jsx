@@ -1,252 +1,147 @@
 // src/components/home/Hero.jsx
 "use client";
 
-import { useState, useEffect } from "react";
-
-// 1. KONFIGURASI SLIDESHOW
-const HERO_SLIDES = [
-    {
-        id: 1,
-        image: "hero2.jpg",
-        showMainContent: false, // Slide 1: Tampilkan Konten Utama
-        customElement: null
-    },
-    {
-        id: 2,
-        image: "warehouse-hero.jpg",
-        showMainContent: true, // Slide 2: Sembunyikan Konten Utama (akan fade out halus)
-        // Optional: Custom element juga akan fade in halus
-        customElement: null
-    },
-    {
-        id: 3,
-        image: "hero3.jpg",
-        showMainContent: false, // Slide 3: Tampilkan Konten Utama Kembali
-        customElement: null
-    },
-];
-
 const Hero = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    useEffect(() => {
-        // Interval timer dipercepat sedikit agar transisi lebih terasa
-        const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) =>
-                prevIndex === HERO_SLIDES.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    const activeSlide = HERO_SLIDES[currentIndex];
-
     return (
         <section className="hero-section">
 
-            {/* --- AREA BACKGROUND SLIDESHOW --- */}
-            <div className="hero-bg-slideshow">
-                {HERO_SLIDES.map((slide, index) => (
-                    <div
-                        key={slide.id}
-                        className={`hero-bg-item ${index === currentIndex ? 'active' : ''}`}
-                        style={{ backgroundImage: `url(/hero/${slide.image})` }}
-                    />
-                ))}
+            {/* 1. BACKGROUND STATIC & OVERLAY */}
+            <div className="hero-bg">
                 <div className="hero-overlay"></div>
             </div>
 
-            {/* --- KONTEN UTAMA --- */}
-            <div className="container content-container">
+            {/* 2. KONTEN UTAMA (Dengan Transisi Fade In) */}
+            <div className="container hero-content-wrapper">
+                <div className="hero-content">
+                    <h1 className="hero-combo-title">
+                        {/* UPDATE: Warna disesuaikan per suku kata sesuai Logo */}
+                        <span className="main-title">
+                            <span className="text-white">MALL</span>
+                            <span className="space"> </span>
+                            <span className="text-red">AP</span>
+                            <span className="text-blue">TIK</span>
+                            <span className="text-green">NAS</span>
+                        </span>
 
-                {/* PERBAIKAN TRANSISI:
-                   Kita tidak lagi menggunakan conditional rendering (&&).
-                   Sebagai gantinya, kita bungkus konten utama dalam wrapper,
-                   dan ubah class-nya berdasarkan state (visible/hidden).
-                */}
-                <div
-                    className={`main-content-wrapper ${activeSlide.showMainContent ? 'is-visible' : 'is-hidden'}`}
-                >
-                    <div className="hero-content">
-                        {/* LEFT TEXT AREA */}
-                        <div className="hero-left">
-                            <h1 className="hero-combo-title">
-                                PLATFORM TERINTEGRASI <br />
-                                UNTUK DISTRIBUSI <br />
-                                <span className="text-red">PRODUK IT</span>
-                            </h1>
+                        <br />
 
-                            <p className="desc">
-                                Menghubungkan Seluruh Rantai Pasok Produk Teknologi, <br />
-                                Dari Supplier Hingga Konsumen Akhir.
-                            </p>
+                        {/* Tagline tetap menggunakan Gradient & Bold */}
+                        <span className="highlight-title">BELANJA PINTAR, BISNIS LANCAR</span>
+                    </h1>
 
-                            <div className="logo-wrapper">
-                                <img src="/img/Logo MA me.png" alt="Mall Aptiknas" className="brand-logo" />
-                            </div>
-                        </div>
-                        <div className="hero-right" />
-                    </div>
-
-                    {/* BUTTONS */}
-                    <div className="hero-buttons-road">
-                        <a className="btn-outline" href="#platform">Pelajari SCM Platform</a>
-                        <a className="btn-primary" href="#marketplace">Jelajahi Marketplace</a>
-                    </div>
+                    <p className="desc">
+                        Menghubungkan Seluruh Rantai Pasok Produk Teknologi, <br />
+                        Dari Supplier Hingga Konsumen Akhir.
+                    </p>
                 </div>
-
-                {/* --- CUSTOM ELEMENT AREA (Opsional) --- */}
-                {/* Ini juga menggunakan teknik wrapper yang sama agar transisi halus */}
-                <div
-                    className={`custom-content-wrapper ${activeSlide.customElement ? 'is-visible' : 'is-hidden'}`}
-                >
-                    {/* Kita perlu memastikan customElement ada sebelum merendernya di dalam wrapper */}
-                    {activeSlide.customElement ? activeSlide.customElement : null}
-                </div>
-
             </div>
 
             <style jsx>{`
-                /* --- LAYOUT FIX (Dari langkah sebelumnya) --- */
+                /* --- LAYOUT UTAMA --- */
                 .hero-section {
-                    width: 100%;
-                    min-height: calc(100vh - 80px); /* Tinggi layar dikurangi tinggi navbar */
-                    margin-top: 80px; /* Dorong ke bawah navbar */
                     position: relative;
-                    overflow: hidden;
+                    width: 100%;
+                    min-height: calc(100vh - 80px);
+                    margin-top: 80px;
                     display: flex;
-                    flex-direction: column;
+                    align-items: center;
                     justify-content: center;
-                    padding-top: 40px; 
-                    padding-bottom: 60px;
+                    text-align: center;
+                    overflow: hidden;
+                    background-color: var(--brand-navy);
                 }
 
-                /* --- BACKGROUND SLIDESHOW --- */
-                .hero-bg-slideshow {
-                    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
-                }
-                .hero-bg-item {
+                /* --- BACKGROUND --- */
+                .hero-bg {
                     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-                    background-position: center top; /* Fokus gambar di tengah atas */
-                    background-size: cover; background-repeat: no-repeat;
-                    opacity: 0;
-                    transition: opacity 1.2s ease-in-out; /* Transisi background */
-                    z-index: 1;
+                    background-image: url('/hero/hero2.jpg'); 
+                    background-size: cover; background-position: center top;
+                    z-index: 0;
                 }
-                .hero-bg-item.active { opacity: 1; z-index: 2; }
+
                 .hero-overlay {
                     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-                    background: linear-gradient(to right, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.2) 100%);
-                    z-index: 3;
+                    /* Overlay dipergelap agar warna-warni logo "pop-up" */
+                    background: radial-gradient(circle at center, rgba(11, 27, 52, 0.7) 0%, rgba(11, 27, 52, 0.95) 100%);
+                    z-index: 1;
                 }
 
-                /* --- CONTAINER --- */
-                .content-container {
-                    position: relative; z-index: 10; height: 100%;
-                    display: flex; flex-direction: column; justify-content: center;
-                    min-height: 400px;
-                    /* Penting: gunakan position relative agar wrapper di dalamnya bisa absolute jika perlu */
-                    position: relative; 
-                }
-
-                /* =========================================
-                   PERBAIKAN TRANSISI HALUS (CORE FIX)
-                   ========================================= */
-                
-                /* Wrapper untuk Konten Utama & Custom */
-                .main-content-wrapper,
-                .custom-content-wrapper {
-                    /* Set state awal (hidden) */
-                    opacity: 0;
-                    /* Gunakan transform untuk sedikit efek naik/turun */
-                    transform: translateY(30px);
-                    /* Matikan interaksi mouse saat hidden agar tombol tidak bisa diklik */
-                    pointer-events: none; 
-                    /* KUNCI TRANSISI HALUS: */
-                    transition: opacity 0.8s ease-in-out, transform 0.8s ease-out;
-                    
-                    /* Agar kedua wrapper bisa menumpuk di posisi yang sama */
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -30%); /* Posisi hidden agak ke bawah */
+                /* --- CONTAINER & ANIMASI --- */
+                .hero-content-wrapper {
+                    position: relative;
+                    z-index: 10;
                     width: 100%;
-                    max-width: 1250px;
                     padding: 0 24px;
+                    display: flex;
+                    justify-content: center;
                 }
-
-                /* State ketika Visible (Aktif) */
-                .main-content-wrapper.is-visible,
-                .custom-content-wrapper.is-visible {
-                    opacity: 1;
-                    /* Kembalikan posisi ke tengah vertikal */
-                    transform: translate(-50%, -50%);
-                    pointer-events: auto; /* Hidupkan kembali interaksi mouse */
-                     /* Delay sedikit saat muncul agar background ganti duluan */
-                    transition-delay: 0.3s;
-                }
-                
-                /* Custom Content Styling (Contoh) */
-                .special-event-box {
-                    text-align: center; color: white;
-                }
-                .special-event-box h2 {
-                    font-size: 4rem; font-weight: 900; text-shadow: 0 0 20px rgba(255,0,0,0.5);
-                }
-
-
-                /* --- STYLE KONTEN YANG ADA (Tidak berubah banyak) --- */
-                .container { width: 100%; max-width: 1250px; margin: 0 auto; padding: 0 24px; }
 
                 .hero-content {
-                    display: grid; grid-template-columns: 1.3fr 0.7fr; align-items: center; margin-bottom: 50px; 
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    opacity: 0;
+                    transform: translateY(30px);
+                    animation: fadeInUp 1s ease-out forwards;
+                    animation-delay: 0.3s; 
                 }
+
+                @keyframes fadeInUp {
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                /* --- TYPOGRAPHY --- */
                 .hero-combo-title {
-                    font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 900; line-height: 1.15; color: #ffffff; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+                    font-size: clamp(2.5rem, 5vw, 4.5rem);
+                    line-height: 1.1;
+                    margin-bottom: 24px;
+                    letter-spacing: 1px;
                 }
-                .text-red { color: #ff3b30; }
+
+                /* Styling untuk Logo Text */
+                .main-title {
+                    font-weight: 800;
+                    /* Menambahkan shadow halus putih di belakang agar warna terbaca jelas di bg gelap */
+                    text-shadow: 0 4px 20px rgba(0,0,0,0.5); 
+                }
+
+                .space { margin: 0 5px; }
+                .text-white { color: var(--white); }
+                .text-red   { color: var(--brand-red); }   /* Merah Brand */
+                .text-blue  { color: var(--brand-blue); }  /* Biru Brand */
+                .text-green { color: var(--brand-green); } /* Hijau Brand */
+
+                /* Tagline: BELANJA PINTAR (Gradient) */
+                .highlight-title {
+                    font-weight: 800; 
+                    font-size: clamp(1.8rem, 4vw, 3.5rem);
+                    background: linear-gradient(90deg, var(--brand-blue), var(--brand-green));
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                    filter: drop-shadow(0 0 20px rgba(0, 174, 239, 0.4));
+                    display: inline-block;
+                    margin-top: 10px;
+                }
+
                 .desc {
-                    color: #f1f1f1; font-size: 1.15rem; line-height: 1.6; margin-bottom: 35px; max-width: 90%; font-weight: 400; text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+                    color: #e2e8f0;
+                    font-size: 1.25rem;
+                    line-height: 1.6;
+                    margin-bottom: 35px;
+                    max-width: 700px;
+                    font-weight: 400;
+                    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
                 }
-                .logo-wrapper {
-                    display: inline-flex; align-items: center; justify-content: center; padding: 12px 28px; border: 2px solid rgba(255, 255, 255, 0.6); border-radius: 50px; background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(8px); margin-bottom: 20px; cursor: pointer;
-                }
-                .brand-logo { width: 180px; height: auto; display: block; }
 
-                /* Tombol dipindahkan ke dalam wrapper, posisinya menyesuaikan */
-                .hero-buttons-road {
-                    display: flex; gap: 20px; margin-left: 20px; /* Geser sedikit agar sejajar teks */
-                }
-                
-                .btn-outline, .btn-primary {
-                    padding: 14px 32px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; font-size: 1rem; white-space: nowrap;
-                }
-                .btn-outline { border: 2px solid rgba(255,255,255,0.9); color: #ffffff; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); }
-                .btn-outline:hover { background: rgba(255,255,255,0.2); border-color: #ffffff; }
-                .btn-primary { background: #ffffff; color: #000000; border: 2px solid #ffffff; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-                .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); background: #f8f9fa; }
-
-                /* Responsif Mobile */
-                @media (max-width: 1024px) {
-                    .hero-section { margin-top: 80px; min-height: calc(100vh - 80px); padding-top: 40px; }
-                }
-                @media (max-width: 900px) {
-                    /* Saat mobile, wrapper tidak perlu absolute centering yang rumit */
-                    .main-content-wrapper, .custom-content-wrapper {
-                        position: relative; top: auto; left: auto; transform: none !important; /* Reset transform */
-                        opacity: 1 !important; /* Selalu tampilkan di mobile untuk simplifikasi, atau atur transisi berbeda */
-                        /* Jika ingin tetap ada transisi di mobile, perlu penyesuaian height container agar tidak 'lompat' */
-                    }
-                    /* Logika sederhana untuk mobile: jika hidden, sembunyikan total agar tidak ada ruang kosong */
-                    .main-content-wrapper.is-hidden, .custom-content-wrapper.is-hidden {
-                        display: none;
-                    }
-
-                    .hero-section { justify-content: flex-start; padding-bottom: 60px; }
-                    .hero-content { grid-template-columns: 1fr; text-align: center; margin-bottom: 30px; }
-                    .hero-buttons-road { flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; width: 100%; margin-left: 0;}
-                    .special-event-box h2 { font-size: 2.5rem; }
+                /* --- MOBILE RESPONSIVE --- */
+                @media (max-width: 768px) {
+                    .hero-section { min-height: 70vh; margin-top: 80px; }
+                    .desc { font-size: 1rem; max-width: 100%; }
                 }
             `}</style>
         </section>

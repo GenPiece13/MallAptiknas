@@ -43,9 +43,6 @@ export default function Home() {
       <WhyUs />
       {/* WhyUs sekarang berisi Keuntungan & Pembeda */}
 
-      <LifeGallery />
-      {/* LifeGallery sekarang berisi Timeline */}
-
       <Partners />
     </>
   );
