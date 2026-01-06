@@ -11,31 +11,6 @@ const Hero = () => {
             </div>
 
             {/* 2. KONTEN UTAMA (Dengan Transisi Fade In) */}
-            <div className="container hero-content-wrapper">
-                <div className="hero-content">
-                    <h1 className="hero-combo-title">
-                        {/* UPDATE: Warna disesuaikan per suku kata sesuai Logo */}
-                        <span className="main-title">
-                            <span className="text-white">MALL</span>
-                            <span className="space"> </span>
-                            <span className="text-red">AP</span>
-                            <span className="text-blue">TIK</span>
-                            <span className="text-green">NAS</span>
-                        </span>
-
-                        <br />
-
-                        {/* Tagline tetap menggunakan Gradient & Bold */}
-                        <span className="highlight-title">BELANJA PINTAR, BISNIS LANCAR</span>
-                    </h1>
-
-                    <p className="desc">
-                        Menghubungkan Seluruh Rantai Pasok Produk Teknologi, <br />
-                        Dari Supplier Hingga Konsumen Akhir.
-                    </p>
-                </div>
-            </div>
-
             <style jsx>{`
                 /* --- LAYOUT UTAMA --- */
                 .hero-section {
