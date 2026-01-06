@@ -3,17 +3,36 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import './admin.css'; // Pastikan CSS diimport
+import { usePathname, useRouter } from 'next/navigation'; // Tambah useRouter
+import './admin.css';
 
 export default function AdminLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   // Tutup sidebar saat pindah halaman (Mobile UX)
   useEffect(() => {
     setIsSidebarOpen(false);
   }, [pathname]);
+
+  // --- FUNGSI LOGOUT ---
+  const handleLogout = async () => {
+    try {
+      // Panggil API Logout
+      const res = await fetch('/api/auth/logout', { method: 'POST' });
+
+      if (res.ok) {
+        // Redirect ke halaman Auth/Login
+        router.push('/auth');
+        router.refresh(); // Refresh agar session di server clear
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Fallback jika API gagal
+      window.location.href = '/auth';
+    }
+  };
 
   return (
     <div id="admin-scope">
@@ -35,31 +54,43 @@ export default function AdminLayout({ children }) {
           </div>
 
           <nav>
-            {/* LINK NAVIGASI: Pastikan href sesuai dengan folder Anda */}
+            {/* LINK DASHBOARD */}
             <Link href="/admin/dashboard" className={`nav-item ${pathname === '/admin/dashboard' ? 'active' : ''}`}>
               <span className="w-6 text-center">📊</span>
               <span>Dashboard</span>
             </Link>
 
+            {/* LINK USERS */}
             <Link href="/admin/users" className={`nav-item ${pathname.includes('/admin/users') ? 'active' : ''}`}>
               <span className="w-6 text-center">👥</span>
               <span>Users</span>
             </Link>
 
+            {/* LINK BLOG */}
             <Link href="/admin/blog" className={`nav-item ${pathname.includes('/admin/blog') ? 'active' : ''}`}>
               <span className="w-6 text-center">📝</span>
               <span>Blog Posts</span>
             </Link>
 
-            {/* Tombol Logout (Bukan Link) */}
-            <button className="nav-item nav-logout mt-auto" onClick={() => console.log('Logout Clicked')}>
+            {/* LINK SETTINGS (Contoh) */}
+            <Link href="/admin/settings" className={`nav-item ${pathname.includes('/admin/settings') ? 'active' : ''}`}>
+              <span className="w-6 text-center">⚙️</span>
+              <span>Settings</span>
+            </Link>
+
+            {/* TOMBOL LOGOUT (Button dengan onClick) */}
+            <button
+              className="nav-item nav-logout mt-auto"
+              onClick={handleLogout}
+              type="button"
+            >
               <span className="w-6 text-center">🚪</span>
               <span>Logout</span>
             </button>
           </nav>
         </aside>
 
-        {/* 3. MAIN AREA (Header + Content) */}
+        {/* 3. MAIN AREA */}
         <div className="admin-main flex flex-col flex-grow">
 
           {/* TOP HEADER */}
@@ -74,8 +105,18 @@ export default function AdminLayout({ children }) {
               </button>
 
               <h2 className="text-lg font-bold text-gray-700">
-                {pathname.includes('blog') ? 'Blog Management' : 'Admin Dashboard'}
+                {pathname.includes('blog') ? 'Manajemen Blog' :
+                  pathname.includes('users') ? 'Manajemen User' :
+                    pathname.includes('dashboard') ? 'Dashboard' : 'Admin Area'}
               </h2>
+            </div>
+
+            {/* Profil Admin Kecil di Kanan */}
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-medium text-gray-600 hidden md:block">Administrator</span>
+              <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-sm border border-slate-300">
+                A
+              </div>
             </div>
           </header>
 

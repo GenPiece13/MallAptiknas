@@ -1,10 +1,12 @@
+// src/app/admin/blog/page.js
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-// import { useRouter } from "next/navigation"; // Tidak wajib jika logout ada di layout
+// Router tidak lagi dibutuhkan untuk logout di sini karena sudah di layout
+// import { useRouter } from "next/navigation"; 
 
 export default function AdminBlogPage() {
-    // const router = useRouter(); // Dipindahkan ke layout.js jika tombol logout ada di sana
+    // const router = useRouter(); // Dipindah ke layout
 
     // Default tab ke "posts" karena ini halaman Blog
     const [activeTab, setActiveTab] = useState("posts");
@@ -12,9 +14,7 @@ export default function AdminBlogPage() {
     // Data States
     const [posts, setPosts] = useState([]);
     const [categories, setCategories] = useState([]);
-
-    // (Opsional) Jika Anda ingin mengelola user di halaman ini juga
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([]); // Tetap disimpan jika dibutuhkan logic masa depan
 
     const [view, setView] = useState("list");
     const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +37,7 @@ export default function AdminBlogPage() {
     useEffect(() => {
         fetchPosts();
         fetchCategories();
-        // fetchUsers(); // Uncomment jika tab Users digunakan
+        // fetchUsers(); // Uncomment jika ingin fetch users
     }, []);
 
     const fetchPosts = async () => {
@@ -50,7 +50,7 @@ export default function AdminBlogPage() {
         try { const res = await fetch('/api/admin/users'); setUsers(await res.json()); } catch (e) { }
     };
 
-    // --- LOGIC ARTIKEL ---
+    // --- LOGIC ARTIKEL (Tidak Berubah) ---
     const handleDelete = async (id) => {
         if (confirm("Yakin ingin menghapus artikel ini?")) {
             await fetch(`/api/blog/${id}`, { method: 'DELETE' });
@@ -112,7 +112,7 @@ export default function AdminBlogPage() {
         }
     };
 
-    // --- LOGIC KATEGORI ---
+    // --- LOGIC KATEGORI (Tidak Berubah) ---
     const handleAddCategory = async (e) => {
         e.preventDefault();
         if (!newCategory) return;
@@ -140,33 +140,34 @@ export default function AdminBlogPage() {
     };
 
     // --- RENDER HALAMAN ---
-    // Perhatikan: Tidak ada <div className="admin-layout"> atau <aside> lagi.
+    // Update: Menggunakan class .tab-btn dan .tab-group dari CSS Admin
     return (
         <div>
             {/* Header Konten Internal */}
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-800">
+                    <h2 className="text-2xl font-bold text-gray-800" style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>
                         {activeTab === 'posts' ? (view === 'form' ? (editId ? 'Edit Artikel' : 'Artikel Baru') : 'Manajemen Blog') : 'Manajemen Kategori'}
                     </h2>
-                    <p className="text-sm text-gray-500">Kelola konten website Anda di sini.</p>
+                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Kelola konten website Anda di sini.</p>
                 </div>
 
-                {/* Tab Switcher Sederhana */}
-                <div className="flex bg-white rounded-lg p-1 shadow-sm border border-gray-200">
+                {/* --- UPDATE: TAB SWITCHER MENGGUNAKAN CSS CLASS BARU --- */}
+                <div className="tab-group">
                     <button
                         onClick={() => { setActiveTab("posts"); setView("list"); }}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition ${activeTab === 'posts' ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:bg-gray-50'}`}
+                        className={`tab-btn ${activeTab === 'posts' ? 'active' : ''}`}
                     >
                         Artikel
                     </button>
                     <button
                         onClick={() => setActiveTab("categories")}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition ${activeTab === 'categories' ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:bg-gray-50'}`}
+                        className={`tab-btn ${activeTab === 'categories' ? 'active' : ''}`}
                     >
                         Kategori
                     </button>
                 </div>
+                {/* ------------------------------------------------------- */}
             </div>
 
             {/* --- KONTEN TAB: KATEGORI --- */}

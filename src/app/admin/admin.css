@@ -261,3 +261,50 @@
         cursor: pointer;
     }
 }
+
+/* Group Tab (Wadah) */
+#admin-scope .tab-group {
+    display: inline-flex;
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Tombol Tab Individual */
+#admin-scope .tab-btn {
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #64748b;
+    /* Slate-500 */
+    transition: all 0.2s ease;
+}
+
+#admin-scope .tab-btn:hover {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+/* State Aktif (Biru) */
+#admin-scope .tab-btn.active {
+    background: var(--active-sidebar);
+    /* Blue-500 */
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+/* Pastikan Link Navigasi bisa diklik (Pointer Events) */
+#admin-scope .nav-item {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    /* Ensure stacking context */
+    z-index: 1;
+}
