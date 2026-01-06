@@ -1,26 +1,28 @@
 /* src/app/admin/admin.css */
 
 /* =========================================
-   1. RESET & VARIABLES (Scoped to #admin-scope)
+   1. RESET & VARIABLES
    ========================================= */
 #admin-scope {
-    --admin-bg: #f8fafc;
-    /* Latar belakang halaman yang lebih terang */
+    --admin-bg: #f1f5f9;
+    /* Slate-100 */
     --sidebar-bg: #1e293b;
-    /* Warna sidebar (Slate-800) */
+    /* Slate-800 */
     --sidebar-text: #94a3b8;
-    /* Warna teks sidebar */
+    /* Slate-400 */
     --sidebar-active-bg: #3b82f6;
-    /* Warna aktif (Blue-500) */
+    /* Blue-500 */
     --sidebar-active-text: #ffffff;
     --card-bg: #ffffff;
     --text-main: #334155;
     --border-color: #e2e8f0;
+    --sidebar-width: 260px;
+    /* Variabel lebar sidebar agar konsisten */
 }
 
-/* Pastikan style ini menimpa global styles */
 #admin-scope * {
     box-sizing: border-box;
+    /* WAJIB: Agar padding tidak menambah lebar elemen */
 }
 
 #admin-scope {
@@ -28,86 +30,104 @@
     background-color: var(--admin-bg);
     color: var(--text-main);
     min-height: 100vh;
+    overflow-x: hidden;
+    /* Mencegah scroll horizontal halaman */
 }
 
 /* =========================================
-   2. LAYOUT STRUCTURE (FLEXBOX STICKY)
+   2. LAYOUT STRUCTURE (FIXED SIDEBAR + SCROLL CONTENT)
    ========================================= */
-/* Container utama menggunakan Flexbox */
+
 #admin-scope .admin-layout {
     display: flex;
-    flex-direction: row;
-    /* Berjajar ke samping */
-    min-height: 100vh;
     width: 100%;
+    min-height: 100vh;
+    position: relative;
 }
 
-/* SIDEBAR: Menggunakan Sticky agar diam di kiri tapi tetap memakan ruang */
+/* --- SIDEBAR --- */
 #admin-scope .admin-sidebar {
-    width: 260px;
-    /* Lebar tetap */
-    min-width: 260px;
-    /* Jangan mengecil */
-    height: 100vh;
-    /* Tinggi sepenuh layar */
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    /* Kunci lebar minimum */
     background-color: var(--sidebar-bg);
     color: var(--sidebar-text);
+
+    /* Sticky Position: Diam di tempat saat scroll */
     position: sticky;
-    /* KUNCI: Sticky position */
     top: 0;
-    /* Tempel di atas */
-    left: 0;
+    height: 100vh;
+
     display: flex;
     flex-direction: column;
-    padding: 24px;
-    z-index: 50;
+    padding: 24px 16px;
+    /* Padding kiri-kanan dikurangi agar tombol muat */
+    z-index: 100;
+    /* Pastikan Sidebar di atas konten */
     overflow-y: auto;
-    /* Scroll jika menu panjang */
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    /* PENTING: Jangan biarkan sidebar tergencet */
 }
 
-/* MAIN CONTENT: Mengisi sisa ruang */
+/* --- MAIN CONTENT --- */
 #admin-scope .admin-content {
     flex-grow: 1;
-    /* Ambil sisa lebar */
-    padding: 40px;
-    width: 100%;
-    /* Fallback */
-    overflow-x: hidden;
-    /* Cegah scroll horizontal berlebih */
+    /* Isi sisa ruang */
+    width: calc(100% - var(--sidebar-width));
+    /* Kalkulasi lebar pasti */
+    padding: 32px 40px;
+    background-color: var(--admin-bg);
+    min-height: 100vh;
 }
 
 /* =========================================
-   3. SIDEBAR NAVIGATION
+   3. SIDEBAR NAVIGATION & BUTTONS (FIXED)
    ========================================= */
+
 #admin-scope .sidebar-logo {
     font-size: 1.5rem;
     font-weight: 800;
     color: #ffffff;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    padding-left: 12px;
     letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
+/* Style Navigasi */
 #admin-scope .nav-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 14px 16px;
-    margin-bottom: 8px;
-    border-radius: 10px;
-    color: var(--sidebar-text);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    font-weight: 500;
-    background: transparent;
-    border: none;
+
     width: 100%;
-    text-align: left;
-    cursor: pointer;
+    /* Lebar mengikuti container sidebar */
+    padding: 12px 16px;
+    /* Padding tombol */
+    margin-bottom: 8px;
+
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+
+    color: var(--sidebar-text);
     font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    /* Mencegah teks tombol tumpah */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#admin-scope .nav-item i {
+    width: 20px;
+    /* Lebar tetap ikon agar teks rata */
+    text-align: center;
+    font-size: 1.1rem;
 }
 
 #admin-scope .nav-item:hover {
@@ -115,104 +135,122 @@
     background-color: rgba(255, 255, 255, 0.08);
 }
 
+/* STATE ACTIVE (Tombol Biru) */
 #admin-scope .nav-item.active {
     background-color: var(--sidebar-active-bg);
     color: var(--sidebar-active-text);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-    /* Efek glowing halus */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    font-weight: 600;
 }
 
 #admin-scope .nav-logout {
     margin-top: auto;
-    /* Dorong ke paling bawah */
-    color: #f87171;
-    /* Merah muda */
+    /* Dorong ke bawah */
+    color: #ef4444;
 }
 
 #admin-scope .nav-logout:hover {
-    background-color: rgba(239, 68, 68, 0.15);
+    background-color: rgba(239, 68, 68, 0.1);
     color: #fca5a5;
 }
 
 /* =========================================
-   4. COMPONENT STYLES
+   4. COMPONENTS (CARDS, TABLES, FORMS)
    ========================================= */
+
+/* --- HEADER TITLE --- */
+#admin-scope header h1 {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+#admin-scope header p {
+    color: #64748b;
+}
 
 /* --- CARDS --- */
 #admin-scope .card {
     background: var(--card-bg);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 24px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     border: 1px solid var(--border-color);
     margin-bottom: 24px;
 }
 
 #admin-scope .stat-value {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 800;
     margin-bottom: 4px;
     line-height: 1;
 }
 
-/* --- TABLES --- */
+/* --- CLEAN TABLE --- */
 #admin-scope .table-container {
     overflow-x: auto;
-    border-radius: 12px;
+    border-radius: 8px;
     border: 1px solid var(--border-color);
 }
 
 #admin-scope .clean-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     white-space: nowrap;
-    /* Mencegah teks turun baris berantakan */
 }
 
 #admin-scope .clean-table th {
-    text-align: left;
-    padding: 18px 24px;
-    background-color: #f1f5f9;
-    border-bottom: 2px solid var(--border-color);
+    background-color: #f8fafc;
     color: #475569;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
     font-size: 0.75rem;
-    letter-spacing: 0.05em;
+    padding: 12px 24px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
 }
 
 #admin-scope .clean-table td {
     padding: 16px 24px;
     border-bottom: 1px solid var(--border-color);
-    vertical-align: middle;
+    color: #334155;
 }
 
 #admin-scope .clean-table tr:last-child td {
     border-bottom: none;
 }
 
-#admin-scope .clean-table tr:hover td {
-    background-color: #f8fafc;
+/* --- FORMS & INPUTS --- */
+#admin-scope .input-clean {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.2s;
+    background: #ffffff;
+}
+
+#admin-scope .input-clean:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 /* --- BUTTONS --- */
 #admin-scope .btn {
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: 0.2s;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-}
-
-#admin-scope .btn-sm {
-    padding: 6px 14px;
-    font-size: 0.85rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 #admin-scope .btn-primary {
@@ -224,19 +262,21 @@
     background-color: #2563eb;
 }
 
-/* Icon Buttons (Edit/Delete/View) */
+#admin-scope .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
 #admin-scope .btn-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border: none;
     cursor: pointer;
-    transition: 0.2s;
     margin-left: 6px;
-    font-size: 0.9rem;
 }
 
 #admin-scope .btn-view {
@@ -254,50 +294,25 @@
     color: #dc2626;
 }
 
-#admin-scope .btn-icon:hover {
-    transform: translateY(-2px);
-    filter: brightness(0.95);
-}
-
-/* --- FORMS --- */
-#admin-scope .input-clean {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    background: #ffffff;
-    font-size: 0.95rem;
-    outline: none;
-    transition: all 0.2s;
-}
-
-#admin-scope .input-clean:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
 /* =========================================
-   5. RESPONSIVE (MOBILE)
+   5. RESPONSIVE MOBILE
    ========================================= */
 @media (max-width: 768px) {
     #admin-scope .admin-layout {
         flex-direction: column;
-        /* Ubah jadi atas-bawah di HP */
+        /* Stack vertikal di HP */
     }
 
-    /* Sidebar jadi Header di HP */
+    /* Sidebar jadi Top Bar Scrollable */
     #admin-scope .admin-sidebar {
         width: 100%;
-        min-width: 0;
         height: auto;
         position: relative;
-        /* Tidak sticky lagi */
         flex-direction: row;
-        /* Icon berjejer ke samping */
         align-items: center;
-        padding: 15px;
+        padding: 12px;
         overflow-x: auto;
-        /* Bisa digeser kiri-kanan */
+        white-space: nowrap;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
@@ -308,24 +323,18 @@
     }
 
     #admin-scope .nav-item {
-        margin-bottom: 0;
         width: auto;
+        margin-bottom: 0;
         padding: 8px 12px;
-        white-space: nowrap;
     }
 
     #admin-scope .nav-logout {
         margin-top: 0;
         margin-left: auto;
-        /* Dorong logout ke kanan */
     }
 
     #admin-scope .admin-content {
+        width: 100%;
         padding: 20px;
-        /* Kurangi padding di HP */
-    }
-
-    #admin-scope .stat-value {
-        font-size: 2rem;
     }
 }
