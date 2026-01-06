@@ -1,88 +1,297 @@
+/* src/app/admin/admin.css */
+
 /* =========================================
-   5. RESPONSIVE SYSTEM (ENHANCED)
+   1. VARIABLES & RESET (SCOPED)
+   ========================================= */
+#admin-scope {
+    --admin-bg: #f3f4f6;
+    --sidebar-bg: #1e293b;
+    --sidebar-text: #94a3b8;
+    --sidebar-active: #ffffff;
+    --sidebar-active-bg: #3b82f6;
+    --card-bg: #ffffff;
+    --text-main: #1f2937;
+    --border-color: #e5e7eb;
+}
+
+#admin-scope {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--admin-bg);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* =========================================
+   2. LAYOUT STRUCTURE
+   ========================================= */
+/* Container Flexbox Utama */
+#admin-scope .admin-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* --- SIDEBAR --- */
+#admin-scope .admin-sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    transition: all 0.3s ease;
+}
+
+#admin-scope .sidebar-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+#admin-scope .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+#admin-scope .nav-item:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#admin-scope .nav-item.active {
+    background-color: var(--sidebar-active-bg);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+#admin-scope .nav-logout {
+    margin-top: auto;
+    color: #ef4444;
+    /* Red */
+}
+
+#admin-scope .nav-logout:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+}
+
+/* --- MAIN CONTENT --- */
+#admin-scope .admin-content {
+    flex: 1;
+    margin-left: 260px;
+    /* Offset width sidebar */
+    padding: 40px;
+    width: calc(100% - 260px);
+}
+
+/* =========================================
+   3. COMPONENTS (Cards, Tables, Forms)
    ========================================= */
 
-/* ===== TABLET ===== */
+/* --- CARDS --- */
+#admin-scope .card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    margin-bottom: 24px;
+}
+
+#admin-scope .stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    line-height: 1;
+}
+
+/* --- TABLES (Clean Table) --- */
+#admin-scope .table-container {
+    overflow-x: auto;
+}
+
+#admin-scope .clean-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+#admin-scope .clean-table th {
+    text-align: left;
+    padding: 16px;
+    background-color: #f8fafc;
+    border-bottom: 2px solid var(--border-color);
+    color: #64748b;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+#admin-scope .clean-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+#admin-scope .clean-table tr:hover td {
+    background-color: #f8fafc;
+}
+
+/* --- BUTTONS --- */
+#admin-scope .btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#admin-scope .btn-primary {
+    background-color: #3b82f6;
+    color: white;
+}
+
+#admin-scope .btn-primary:hover {
+    background-color: #2563eb;
+}
+
+#admin-scope .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+#admin-scope .btn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-left: 6px;
+}
+
+#admin-scope .btn-view {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+
+#admin-scope .btn-edit {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+#admin-scope .btn-delete {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+#admin-scope .btn-icon:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+}
+
+/* --- FORMS --- */
+#admin-scope .input-clean {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #f9fafb;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border 0.2s;
+}
+
+#admin-scope .input-clean:focus {
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* =========================================
+   4. RESPONSIVE SYSTEM
+   ========================================= */
+
+/* ===== TABLET (Medium) ===== */
 @media (max-width: 1199px) {
     #admin-scope .admin-content {
-        padding: 32px;
-    }
-
-    #admin-scope .card {
-        padding: 20px;
+        padding: 24px;
     }
 }
 
-/* ===== MOBILE LAYOUT ===== */
+/* ===== MOBILE (Small) ===== */
 @media (max-width: 768px) {
+    /* Sidebar berubah jadi bottom nav atau hidden, 
+       disini kita buat simple stack column layout untuk mobile */
 
-    /* --- Sidebar Off-canvas --- */
+    #admin-scope .admin-layout {
+        flex-direction: column;
+    }
+
     #admin-scope .admin-sidebar {
-        display: flex;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        position: fixed;
-        z-index: 999;
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+        bottom: auto;
     }
 
-    /* Sidebar aktif (toggle) */
-    #admin-scope.sidebar-open .admin-sidebar {
-        transform: translateX(0);
+    #admin-scope .sidebar-logo {
+        display: none;
+        /* Hemat tempat di mobile */
     }
 
-    /* Konten full width */
+    #admin-scope .nav-item {
+        margin-bottom: 0;
+        justify-content: center;
+        white-space: nowrap;
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+
+    #admin-scope .nav-item i {
+        margin-right: 5px;
+    }
+
     #admin-scope .admin-content {
         margin-left: 0;
         width: 100%;
-        padding: 20px;
-    }
-
-    /* Overlay saat sidebar buka */
-    #admin-scope .admin-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 998;
-    }
-
-    /* Header mobile */
-    #admin-scope .admin-mobile-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 24px;
-    }
-
-    #admin-scope .hamburger {
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
-        border: none;
-        background: white;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Cards lebih rapat */
-    #admin-scope .card {
         padding: 16px;
     }
 
-    /* Statistik font lebih kecil */
-    #admin-scope .stat-value {
-        font-size: 2rem;
-    }
-
-    /* Table scroll horizontal */
-    #admin-scope .table-responsive {
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    #admin-scope .clean-table {
-        min-width: 600px;
+    #admin-scope .table-container {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
     }
 }
