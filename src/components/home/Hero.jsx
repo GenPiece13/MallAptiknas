@@ -8,7 +8,7 @@ const HERO_SLIDES = [
     {
         id: 1,
         image: "hero2.jpg",
-        showMainContent: true, // Slide 1: Tampilkan Konten Utama
+        showMainContent: false, // Slide 1: Tampilkan Konten Utama
         customElement: null
     },
     {
