@@ -27,9 +27,15 @@ export default function PlatformPage() {
                         <span>E-Commerce SCM Platform</span>
                     </div>
 
-                    <h1 className="hero-title">
-                        Mall <span style={{ color: "var(--brand-blue)" }}>APTIKNAS</span>
-                    </h1>
+                    {/* --- PERUBAHAN DI SINI: Teks diganti Logo --- */}
+                    <div className="hero-logo-wrapper">
+                        <img
+                            src="/img/logo mallaptiknas.png"
+                            alt="Logo Mall APTIKNAS"
+                            className="platform-hero-logo"
+                        />
+                    </div>
+                    {/* --------------------------------------------- */}
 
                     <p className="hero-desc">
                         Platform Supply Chain Management untuk Industri Teknologi Indonesia. Hubungkan bisnis Anda dengan ribuan mitra.
@@ -41,58 +47,94 @@ export default function PlatformPage() {
                 </div>
             </section>
 
+            {/* ... (Sisa kode SECTION 2 dan 3 tetap sama, tidak perlu diubah) ... */}
+
             {/* SECTION 2: PRICING TIERS */}
             <section className="section-wrapper">
                 <div className="section-header">
                     <h2 className="section-title">Pilih Tier Keanggotaan Anda</h2>
-                    <p style={{ color: "var(--brand-grey)" }}>
-                        Bergabunglah dengan ekosistem e-commerce SCM terbesar di Indonesia.
-                    </p>
+                    <div className="promo-badge-container">
+                        <span className="promo-main-tag">🔥 PROMO SPESIAL 2026</span>
+                        <p className="promo-desc">
+                            <strong>Gratis Jan-Mar 2026</strong>, lalu Diskon 50% s/d Desember. <br />
+                            <small>*Hanya untuk pendaftaran sebelum 1 April 2026</small>
+                        </p>
+                    </div>
                 </div>
 
-                <div className="pricing-grid">
+                {/* UPDATE: Grid disesuaikan untuk 4 kolom di layar lebar */}
+                <div className="pricing-grid four-cols">
 
+                    {/* 1. PRINCIPAL */}
                     <PricingCard
                         title="Principal"
-                        subtitle="Untuk brand owner & manufacturer"
-                        color="var(--brand-blue)" // Mengirim variabel warna
+                        subtitle="Brand owner & manufacturer"
+                        desc="Raih kendali penuh atas distribusi. Lacak pergerakan, kendali harga, & analisis pasar."
+                        color="var(--brand-blue)"
                         icon={<IconCrown />}
+                        basePrice="Rp 750.000"
+                        effectivePrice="Rp 375.000"
                         benefits={[
-                            "Visibilitas",
-                            "Kontrol Ketat",
-                            "Otomatisasi",
-                            "Analisis Data",
-                            "Promosi",
+                            "Kendali penuh distribusi",
+                            "Lacak pergerakan stok",
+                            "Kontrol harga pasar",
+                            "Analisis data mendalam",
+                            "Laporan real-time"
                         ]}
                     />
 
+                    {/* 2. DISTRIBUTOR */}
                     <PricingCard
                         title="Distributor"
-                        subtitle="Untuk distributor resmi & wholesaler"
+                        subtitle="Distributor resmi & wholesaler"
+                        desc="Ekspansi bisnis lebih mudah. Akses banyak Principal & kelola supply ke Master Dealer."
                         color="var(--brand-red)"
                         icon={<IconBuilding />}
+                        basePrice="Rp 400.000"
+                        effectivePrice="Rp 200.000"
                         benefits={[
-                            "Akses katalog produk principal",
-                            "Sistem pemesanan otomatis (PO)",
-                            "Tracking pengiriman",
-                            "Harga khusus distributor",
-                            "Credit limit management",
-                            "Multi-warehouse support"
+                            "Akses ragam Principal",
+                            "Kelola supply chain",
+                            "Manajemen kredit MD",
+                            "Efisiensi operasional",
+                            "Fitur API (+Rp 200rb)"
                         ]}
                     />
 
+                    {/* 3. MASTER DEALER (BARU) */}
                     <PricingCard
-                        title="Mitra"
-                        subtitle="Untuk reseller & UMKM"
+                        title="Master Dealer"
+                        subtitle="Grosir & Jaringan Toko"
+                        desc="Kuatkan jaringan toko Anda. Akses harga terbaik & kelola mitra dengan mudah."
+                        color="#F59E0B" // Warna Amber/Orange untuk pembeda
+                        icon={<IconStore />}
+                        basePrice="Rp 250.000"
+                        effectivePrice="Rp 125.000"
+                        benefits={[
+                            "Akses harga terbaik",
+                            "Kelola mitra toko",
+                            "Dukungan logistik",
+                            "Monitoring jaringan",
+                            "Order management"
+                        ]}
+                    />
+
+                    {/* 4. MITRA USAHA */}
+                    <PricingCard
+                        title="Mitra Usaha"
+                        subtitle="Reseller, Retail & UMKM"
+                        desc="Jualan kompetitif dengan akses harga berjenjang & stok real-time."
                         color="var(--brand-green)"
                         icon={<IconUsers />}
+                        basePrice="Rp 150.000"
+                        effectivePrice="Mulai Rp 25rb"
+                        priceNote="Tier 1, 2, 3 (Rp 50rb-150rb)"
                         benefits={[
-                            "Akses katalog produk lengkap",
-                            "Harga kompetitif reseller",
-                            "Dropship & fulfillment support",
-                            "Training & edukasi bisnis",
-                            "Komunitas mitra APTIKNAS",
-                            "Promo & diskon eksklusif"
+                            "Akses harga berjenjang",
+                            "Stok real-time",
+                            "Pembayaran fleksibel",
+                            "Langsung live di Marketplace",
+                            "Dropship support"
                         ]}
                     />
 
@@ -132,36 +174,54 @@ export default function PlatformPage() {
     );
 }
 
-// --- SUB COMPONENTS ---
-
-// Komponen Pricing Card yang menerima prop "color"
-function PricingCard({ title, subtitle, icon, benefits, color }) {
+// ... (Sub Components PricingCard, DocCard, Icons tetap sama di bawah) ...
+// Sertakan juga kode Sub Components di file asli Anda
+function PricingCard({ title, subtitle, desc, icon, benefits, color, basePrice, effectivePrice, priceNote }) {
     const targetUrl = "https://stage-scm.mallaptiknas.com/login";
-    // Kita set variabel CSS '--theme-color' langsung di style wrapper
+
     return (
         <div className="pricing-card" style={{ '--theme-color': color }}>
             <div className="card-top-line"></div>
 
-            <div className="card-badge-free">FREE 2026</div>
+            {/* Badge Promo */}
+            <div className="card-badge-free">FREE JAN-MAR</div>
 
-            <div className="card-icon">
-                {icon}
+            <div className="card-header-group">
+                <div className="card-icon">
+                    {icon}
+                </div>
+                <div>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--brand-navy)', margin: 0 }}>{title}</h3>
+                    <p style={{ color: '#64748b', fontSize: '0.8rem', margin: 0 }}>{subtitle}</p>
+                </div>
             </div>
 
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--brand-navy)' }}>{title}</h3>
-            <p style={{ color: '#64748b', marginBottom: '1.5rem', fontSize: '0.875rem' }}>{subtitle}</p>
+            {/* Deskripsi Singkat */}
+            <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: '1.5', marginBottom: '1.5rem', minHeight: '60px' }}>
+                {desc}
+            </p>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-                <div className="card-price-strike">Rp xxx.xxx</div>
-                <div>
-                    <span className="card-price-main">GRATIS</span>
-                    <span style={{ color: '#64748b' }}>/tahun</span>
+            {/* Bagian Harga */}
+            <div className="price-section" style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', marginBottom: '1.5rem', border: '1px dashed #e2e8f0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <span style={{ fontSize: '0.85rem', color: '#94a3b8' }}>Harga Normal:</span>
+                    <span className="card-price-strike" style={{ fontSize: '0.9rem' }}>{basePrice}/bln</span>
                 </div>
-                <p style={{ fontSize: '0.75rem', color: 'var(--brand-red)', fontWeight: '500', marginTop: '0.25rem' }}>Promo Jan - Mar 2026</p>
+
+                <div style={{ marginTop: '8px' }}>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--brand-navy)', fontWeight: '600', marginBottom: '2px' }}>
+                        Promo Apr-Des 2026:
+                    </p>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+                        <span style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--theme-color)' }}>{effectivePrice}</span>
+                        <span style={{ color: '#64748b', fontSize: '0.85rem' }}>/bln</span>
+                    </div>
+                    {priceNote && <p style={{ fontSize: '0.7rem', color: '#64748b', marginTop: '2px' }}>*{priceNote}</p>}
+                </div>
             </div>
 
             <div style={{ marginBottom: '2rem' }}>
-                <p className="card-benefits-title">Keuntungan:</p>
+                <p className="card-benefits-title">Keuntungan Utama:</p>
                 {benefits.map((benefit, idx) => (
                     <div key={idx} className="benefit-item">
                         <div className="benefit-check">✔</div>
@@ -200,13 +260,9 @@ function DocCard({ title, subtitle, desc }) {
     );
 }
 
-// --- ICONS ---
-const IconCrown = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"></path><path d="M5 21h14"></path></svg>
-);
-const IconBuilding = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path><path d="M10 6h4"></path></svg>
-);
-const IconUsers = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg>
-);
+// --- ICONS (Tambahkan IconStore) ---
+const IconCrown = () => (<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"></path><path d="M5 21h14"></path></svg>);
+const IconBuilding = () => (<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path><path d="M10 6h4"></path></svg>);
+// Icon Baru untuk Master Dealer
+const IconStore = () => (<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>);
+const IconUsers = () => (<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg>);

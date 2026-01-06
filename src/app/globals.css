@@ -72,10 +72,10 @@ ul {
 }
 
 /* =========================================
-   FIXED NAVBAR STYLES
+   FIXED & RESPONSIVE NAVBAR (FINAL FIX)
    ========================================= */
 
-/* 1. Header Utama */
+/* 1. Header Container */
 header {
   position: fixed;
   width: 100%;
@@ -84,112 +84,43 @@ header {
   z-index: 9999;
   background-color: var(--white);
   height: 80px;
-  /* Tinggi tetap */
-  display: flex;
-  align-items: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* 2. Container di dalam Header */
-/* Gunakan !important untuk memastikan aturan ini menang */
 header .container {
   display: flex !important;
-  flex-direction: row !important;
-  /* Paksa baris horizontal */
-  justify-content: space-between !important;
-  /* Logo kiri, Menu kanan */
-  align-items: center !important;
-  /* Vertikal tengah */
-  width: 100%;
-  height: 100%;
-}
-
-/* 3. Navigasi */
-nav {
-  display: flex !important;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
+  padding: 0 24px;
 }
 
-/* 4. Logo */
-.logo {
+/* 2. Navigation & Logo */
+nav {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  flex-shrink: 0;
-  /* Mencegah logo mengecil/gepeng */
-  z-index: 1001;
-}
-
-.logo a {
-  display: flex;
-  align-items: center;
+  width: 100%;
 }
 
 .logo img {
   height: 42px;
-  /* Pastikan tinggi gambar terkontrol */
   width: auto;
   object-fit: contain;
 }
 
-/* 5. Menu Links (Desktop) */
-.nav-links {
-  display: flex;
-  align-items: center;
-}
-
-.nav-links ul {
-  display: flex !important;
-  flex-direction: row !important;
-  /* Paksa menu berderet ke samping */
-  gap: 30px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.nav-links a {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--brand-grey);
-  text-transform: capitalize;
-  transition: color 0.3s ease;
-  padding: 5px 0;
-  position: relative;
-  text-decoration: none;
-}
-
-/* Efek Hover Garis Bawah */
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 3px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--brand-blue);
-  transition: width 0.3s;
-  border-radius: 2px;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--brand-blue);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
-}
-
-/* 6. Hamburger Menu (Default Hidden) */
+/* 3. Hamburger Menu (Mobile Trigger) */
 .hamburger {
   display: none;
-  cursor: pointer;
+  /* Desktop: Hidden */
   flex-direction: column;
   gap: 5px;
-  z-index: 1001;
+  cursor: pointer;
+  z-index: 10001;
+  /* Wajib lebih tinggi dari nav-links mobile */
+  background: transparent;
+  border: none;
+  padding: 5px;
 }
 
 .bar {
@@ -197,62 +128,35 @@ nav {
   width: 25px;
   height: 3px;
   background-color: var(--brand-black);
-  transition: 0.3s;
   border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 4. Nav Links (Desktop) */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links ul {
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 /* =========================================
- RESPONSIVE (Mobile View)
- ========================================= */
-@media (max-width: 992px) {
-
-  /* Perkecil gap menu di tablet */
-  .nav-links ul {
-    gap: 20px;
-  }
-}
-
+   MOBILE RESPONSIVE (MAX-WIDTH: 768px)
+   ========================================= */
 @media (max-width: 768px) {
+
+  /* Munculkan Hamburger */
   .hamburger {
     display: flex;
-    /* Munculkan di HP */
   }
 
-  /* Menu Mobile Fullscreen/Sidebar */
-  .nav-links {
-    position: fixed;
-    right: -100%;
-    top: 80px;
-    /* Sesuaikan tinggi header */
-    height: calc(100vh - 80px);
-    width: 100%;
-    background-color: var(--white);
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 40px;
-    transition: 0.4s ease-in-out;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Class active ditambahkan oleh React State */
-  .nav-links.active {
-    right: 0;
-  }
-
-  .nav-links ul {
-    flex-direction: column !important;
-    /* Menu ke bawah di HP */
-    align-items: center;
-    gap: 35px;
-  }
-
-  .nav-links a {
-    font-size: 1.2rem;
-    /* Font lebih besar di HP */
-  }
-
-  /* Animasi Hamburger */
+  /* Animasi Hamburger menjadi 'X' saat aktif */
   .hamburger.active .bar:nth-child(2) {
     opacity: 0;
   }
@@ -263,6 +167,44 @@ nav {
 
   .hamburger.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Sidebar Mobile */
+  .nav-links {
+    position: fixed;
+    top: 80px;
+    /* Sesuai tinggi header */
+    right: -100%;
+    /* Sembunyi di kanan layar */
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: var(--white);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 50px;
+    transition: right 0.4s ease-in-out;
+    box-shadow: none;
+    /* Hilangkan shadow internal agar bersih */
+  }
+
+  /* Class .active ditambahkan oleh React State di Navbar.jsx */
+  .nav-links.active {
+    right: 0;
+    /* Geser masuk ke layar */
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    display: block;
+    width: 100%;
   }
 }
 

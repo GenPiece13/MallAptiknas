@@ -320,3 +320,118 @@
 .cta-banner button:hover {
     background: #f8fafc;
 }
+
+/* --- TAMBAHAN STYLE LOGO BARU --- */
+.hero-logo-wrapper {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.platform-hero-logo {
+    height: 80px;
+    /* Ukuran default untuk Mobile */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+    /* Memberikan efek depth/bayangan halus */
+    transition: transform 0.3s ease;
+}
+
+.platform-hero-logo:hover {
+    transform: scale(1.05);
+    /* Sedikit efek interaktif saat di-hover */
+}
+
+/* Responsif untuk Tablet & Desktop */
+@media (min-width: 768px) {
+    .platform-hero-logo {
+        height: 130px;
+        /* Ukuran lebih besar di layar lebar */
+    }
+}
+
+/* Header Promo Style */
+.promo-badge-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.promo-main-tag {
+    background: #e11d48;
+    /* Rose-600 */
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 99px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.promo-desc {
+    color: var(--brand-grey);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Grid System Update untuk 4 Kolom */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Mobile: 1 kolom */
+    gap: 1.5rem;
+    max-width: 1400px;
+    /* Lebar max diperbesar agar 4 kartu muat */
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Tablet: 2 Kolom */
+@media (min-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop Besar: 4 Kolom */
+@media (min-width: 1200px) {
+    .pricing-grid.four-cols {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Card Updates */
+.card-header-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.pricing-card .card-icon {
+    width: 3.5rem;
+    /* Icon sedikit diperkecil agar header muat */
+    height: 3.5rem;
+    margin-bottom: 0;
+    /* Margin dihapus karena sudah di-handle flex gap */
+}
+
+/* Animasi Pulse untuk Promo */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

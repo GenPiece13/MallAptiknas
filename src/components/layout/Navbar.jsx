@@ -80,11 +80,6 @@ const Navbar = () => {
                                     Blog
                                 </Link>
                             </li>
-                            <li>
-                                <Link href="https://sleepy-lemur-scurry.vercel.app/help" className={pathname.startsWith("/help") ? "active" : ""}>
-                                    Help
-                                </Link>
-                            </li>
                         </ul>
                     </div>
                 </nav>
