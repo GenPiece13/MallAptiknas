@@ -1747,3 +1747,16 @@ nav {
     font-size: 1rem;
   }
 }
+
+/* Tambahkan di bawah file src/app/globals.css */
+
+.bg-gradient-hero {
+  background: radial-gradient(circle at top right, #0B1B34, #00AEEF 120%);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(to right, #FFD700, #FDB931);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

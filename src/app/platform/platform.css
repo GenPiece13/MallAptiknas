@@ -1,0 +1,322 @@
+/* src/app/platform/platform.css */
+
+/* --- HERO SECTION --- */
+.platform-hero {
+    position: relative;
+    background-color: var(--brand-navy);
+    color: #fff;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1rem;
+    overflow: hidden;
+}
+
+/* Animasi Background (Blobs) */
+.hero-bg-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+.hero-shape {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+}
+
+.shape-1 {
+    top: -10%;
+    left: -10%;
+    width: 40%;
+    height: 40%;
+    background-color: var(--brand-blue);
+}
+
+.shape-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 40%;
+    height: 40%;
+    background-color: var(--brand-red);
+}
+
+/* Konten Hero */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 56rem;
+    /* max-w-4xl */
+    margin: 0 auto;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 3.75rem;
+    }
+}
+
+.hero-desc {
+    font-size: 1.125rem;
+    color: #cbd5e1;
+    /* slate-300 */
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.hero-promo {
+    display: inline-block;
+    background-color: #fff;
+    color: var(--brand-navy);
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.hero-promo:hover {
+    transform: scale(1.05);
+}
+
+/* --- PRICING SECTION --- */
+.section-wrapper {
+    padding: 6rem 1rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--brand-navy);
+    margin-bottom: 1rem;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card Styling */
+.pricing-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.card-top-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--theme-color);
+}
+
+.card-badge-free {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid #e2e8f0;
+}
+
+.card-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    /* Menggunakan color-mix untuk transparansi dinamis berbasis variabel */
+    background-color: color-mix(in srgb, var(--theme-color), transparent 90%);
+    color: var(--theme-color);
+}
+
+.card-price-strike {
+    text-decoration: line-through;
+    color: #94a3b8;
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.card-price-main {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--brand-blue);
+    /* Bisa diubah jadi theme-color jika mau */
+}
+
+.card-benefits-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--brand-navy);
+    margin-bottom: 1rem;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.benefit-check {
+    color: var(--brand-green);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.btn-card-action {
+    width: 100%;
+    padding: 0.875rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--theme-color);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 2rem;
+}
+
+.btn-card-action:hover {
+    opacity: 0.9;
+}
+
+/* --- DOCS SECTION --- */
+.docs-section {
+    background-color: var(--bg-light);
+    padding: 5rem 1rem;
+}
+
+.doc-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .doc-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.doc-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    transition: box-shadow 0.3s;
+}
+
+.doc-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.doc-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: rgba(0, 174, 239, 0.1);
+    /* brand-blue 10% */
+    color: var(--brand-blue);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cta-banner {
+    background: linear-gradient(to right, var(--brand-navy), var(--brand-blue));
+    border-radius: 1rem;
+    padding: 2.5rem;
+    text-align: center;
+    color: #fff;
+    margin-top: 3rem;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-banner button {
+    background: #fff;
+    color: var(--brand-blue);
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+    transition: background 0.2s;
+}
+
+.cta-banner button:hover {
+    background: #f8fafc;
+}

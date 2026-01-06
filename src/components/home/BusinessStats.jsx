@@ -1,6 +1,7 @@
 // src/components/home/BusinessStats.jsx
 "use client";
 import { useState } from 'react';
+import Link from 'next/link';
 
 const BusinessStats = () => {
     // --- STATE MANAGEMENT ---
@@ -78,7 +79,6 @@ const BusinessStats = () => {
                 </div>
 
                 <div className="cp-platform-grid">
-
                     {/* =========================================================
                         KARTU 1: SCM PLATFORM B2B
                        ========================================================= */}
@@ -129,13 +129,16 @@ const BusinessStats = () => {
 
                             {/* CTA BUTTON B2B */}
                             <div className="card-footer">
-                                <a
+                                {/* Mengubah <a> menjadi <Link> 
+                                Mengubah href ke internal route "/platform"
+                                Menghapus target="_blank" karena ini navigasi internal
+                            */}
+                                <Link
                                     className="cp-link"
-                                    href="https://stage-scm.mallaptiknas.com/login"
-                                    target="_blank"
+                                    href="/platform"
                                 >
-                                    Gabung SCM Sekarang <i className="fa-solid fa-arrow-right"></i>
-                                </a>
+                                    Pelajari Platform SCM <i className="fa-solid fa-arrow-right"></i>
+                                </Link>
                             </div>
                         </div>
                     </div>

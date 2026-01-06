@@ -47,7 +47,7 @@ const Footer = () => {
                         <h4>Ikuti Kami</h4>
                         <ul className="social-links-list">
                             <li>
-                                <a href="#" aria-label="Instagram">
+                                <a href="https://www.instagram.com/mallaptiknas?igsh=MTB5N213MzJ3YWtqMw==" aria-label="Instagram">
                                     <i className="fab fa-instagram"></i> Instagram
                                 </a>
                             </li>
