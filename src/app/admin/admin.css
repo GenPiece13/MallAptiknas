@@ -1,22 +1,20 @@
 /* src/app/admin/admin.css */
 
 /* =========================================
-   1. RESET & VARIABLES (SCOPED)
+   1. RESET & VARIABLES
    ========================================= */
 #admin-scope {
     --bg-body: #f1f5f9;
-    /* Latar belakang abu muda */
-    --bg-sidebar: #1e293b;
-    /* Sidebar Gelap (Slate-800) */
+    --bg-sidebar: #0f172a;
+    /* Slate-900 */
     --text-sidebar: #94a3b8;
-    /* Teks Sidebar Abu */
+    /* Slate-400 */
     --active-sidebar: #3b82f6;
-    /* Warna Aktif Biru */
+    /* Blue-500 */
     --text-white: #ffffff;
     --text-main: #334155;
     --border-color: #e2e8f0;
     --sidebar-width: 280px;
-    /* Lebar Sidebar Tetap */
     --header-height: 70px;
 }
 
@@ -29,14 +27,11 @@
     background-color: var(--bg-body);
     color: var(--text-main);
     min-height: 100vh;
-    font-size: 16px;
-    line-height: 1.5;
 }
 
 /* =========================================
-   2. LAYOUT STRUCTURE (FLEXBOX)
+   2. LAYOUT STRUCTURE (Flexbox Sticky)
    ========================================= */
-/* Container utama pembungkus Sidebar & Konten */
 #admin-scope .admin-layout {
     display: flex;
     width: 100%;
@@ -52,11 +47,12 @@
     color: var(--text-sidebar);
     height: 100vh;
 
-    /* Sticky: Sidebar tetap terlihat saat scroll */
+    /* Sticky: Diam di kiri saat scroll */
     position: sticky;
     top: 0;
     left: 0;
     z-index: 50;
+    /* Z-Index standar desktop */
 
     display: flex;
     flex-direction: column;
@@ -68,35 +64,62 @@
 /* --- MAIN CONTENT --- */
 #admin-scope .admin-content {
     flex-grow: 1;
-    /* Mengisi sisa ruang kosong */
     width: calc(100% - var(--sidebar-width));
-    /* Kalkulasi lebar pasti */
-    padding: 32px 40px;
+    padding: 30px;
     background-color: var(--bg-body);
-    overflow-x: hidden;
 }
 
 /* =========================================
-   3. SIDEBAR NAVIGATION
+   3. HEADER / NAVBAR
+   ========================================= */
+#admin-scope .admin-header {
+    height: var(--header-height);
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    margin-bottom: 20px;
+}
+
+/* --- HAMBURGER BUTTON (FIXED) --- */
+/* Default: Sembunyi di Desktop */
+#admin-scope .hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-main);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+#admin-scope .hamburger-btn:hover {
+    background-color: #f1f5f9;
+}
+
+/* =========================================
+   4. SIDEBAR NAVIGATION
    ========================================= */
 #admin-scope .sidebar-logo {
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--text-white);
     margin-bottom: 40px;
-    letter-spacing: 1px;
     padding-left: 10px;
 }
 
-/* Navigasi Wrapper: Flex Column agar tombol turun ke bawah */
 #admin-scope .admin-sidebar nav {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    /* Jarak antar tombol */
 }
 
-/* Tombol Navigasi */
+/* Style untuk LINK (<a>) dan BUTTON */
 #admin-scope .nav-item {
     display: flex;
     align-items: center;
@@ -106,6 +129,7 @@
 
     color: var(--text-sidebar);
     text-decoration: none;
+    /* Hilangkan garis bawah link */
     background: transparent;
     border: none;
     border-radius: 8px;
@@ -117,32 +141,21 @@
     transition: all 0.2s ease;
 }
 
-#admin-scope .nav-item i {
-    width: 24px;
-    /* Lebar icon tetap agar teks rata */
-    text-align: center;
-}
-
-/* Hover State */
 #admin-scope .nav-item:hover {
     background-color: rgba(255, 255, 255, 0.08);
     color: var(--text-white);
-    transform: translateX(4px);
 }
 
-/* Active State */
 #admin-scope .nav-item.active {
     background-color: var(--active-sidebar);
     color: var(--text-white);
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-/* Tombol Logout (Paling Bawah) */
+/* Logout khusus */
 #admin-scope .nav-logout {
     margin-top: auto;
     color: #ef4444;
-    /* Merah */
 }
 
 #admin-scope .nav-logout:hover {
@@ -151,201 +164,100 @@
 }
 
 /* =========================================
-   4. COMPONENTS (Cards, Tables, Forms)
+   5. COMPONENTS (Cards, Tables)
    ========================================= */
-
-/* --- CARDS --- */
 #admin-scope .card {
     background: #ffffff;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    border: 1px solid var(--border-color);
-    margin-bottom: 24px;
-}
-
-#admin-scope .stat-value {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 4px;
-    line-height: 1;
-}
-
-/* --- TABLES --- */
-#admin-scope .table-container {
-    overflow-x: auto;
     border-radius: 12px;
+    padding: 24px;
     border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 #admin-scope .clean-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    /* Mencegah teks tabel tumpah */
 }
 
 #admin-scope .clean-table th {
     text-align: left;
-    padding: 16px 24px;
-    background-color: #f8fafc;
+    padding: 12px;
+    background: #f8fafc;
     border-bottom: 2px solid var(--border-color);
+    font-size: 0.85rem;
     color: #64748b;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
 }
 
 #admin-scope .clean-table td {
-    padding: 16px 24px;
+    padding: 12px;
     border-bottom: 1px solid var(--border-color);
-    vertical-align: middle;
-}
-
-#admin-scope .clean-table tr:hover td {
-    background-color: #f8fafc;
-}
-
-/* --- BUTTONS --- */
-#admin-scope .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 0.95rem;
-}
-
-#admin-scope .btn-primary {
-    background-color: #3b82f6;
-    color: white;
-}
-
-#admin-scope .btn-primary:hover {
-    background-color: #2563eb;
-}
-
-#admin-scope .btn-sm {
-    padding: 6px 12px;
-    font-size: 0.85rem;
-}
-
-#admin-scope .btn-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    margin-left: 6px;
-    transition: 0.2s;
-}
-
-#admin-scope .btn-view {
-    background: #e0f2fe;
-    color: #0284c7;
-}
-
-#admin-scope .btn-edit {
-    background: #fef3c7;
-    color: #d97706;
-}
-
-#admin-scope .btn-delete {
-    background: #fee2e2;
-    color: #dc2626;
-}
-
-/* --- FORMS --- */
-#admin-scope .input-clean {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    outline: none;
-    font-size: 0.95rem;
-    background: #ffffff;
-    transition: 0.2s;
-}
-
-#admin-scope .input-clean:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 /* =========================================
-   5. RESPONSIVE (MOBILE)
+   6. RESPONSIVE (MOBILE)
    ========================================= */
 @media (max-width: 991px) {
     #admin-scope .admin-layout {
         flex-direction: column;
-        /* Ubah layout jadi vertikal di Mobile */
+    }
+
+    /* Reset Header di Mobile */
+    #admin-scope .admin-main {
+        width: 100%;
     }
 
     #admin-scope .admin-content {
         width: 100%;
-        margin-left: 0;
         padding: 20px;
     }
 
-    /* --- SIDEBAR MOBILE (HAMBURGER MODE) --- */
-    /* Sidebar Mobile menggunakan class .mobile-open 
-       yang di-trigger dari layout.js 
-    */
+    /* Munculkan Hamburger di Mobile */
+    #admin-scope .hamburger-btn {
+        display: block;
+    }
+
+    /* Sidebar Off-Canvas */
     #admin-scope .admin-sidebar {
         position: fixed;
         top: 0;
         left: 0;
         height: 100vh;
-        width: 260px;
+        width: 280px;
         z-index: 100;
-
-        /* Default: Sembunyi di kiri */
+        /* Paling atas di Mobile */
         transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s ease;
         box-shadow: none;
     }
 
-    /* Saat tombol hamburger diklik (class ditambahkan oleh React) */
     #admin-scope .admin-sidebar.mobile-open {
         transform: translateX(0);
-        /* Muncul */
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
     }
 
-    /* Tombol Close Sidebar (Hanya di Mobile) */
-    #admin-scope .btn-close-sidebar {
-        display: block !important;
-    }
-
-    /* Overlay Gelap di belakang sidebar */
+    /* Overlay Gelap */
     #admin-scope .mobile-overlay {
-        display: none;
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.5);
         z-index: 90;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
     }
 
     #admin-scope .mobile-overlay.active {
-        display: block;
+        opacity: 1;
+        visibility: visible;
     }
 
-    /* Header Mobile */
-    #admin-scope .admin-header {
-        padding: 0 20px;
-    }
-
-    #admin-scope .hamburger-btn {
-        display: flex !important;
-        /* Munculkan hamburger */
+    /* Tombol Close di dalam Sidebar */
+    #admin-scope .btn-close-sidebar {
+        display: block !important;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
     }
 }
