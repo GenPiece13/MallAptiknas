@@ -4,7 +4,7 @@
 const WhyUs = () => {
     return (
         <>
-            {/* --- BAGIAN 1: KEUNTUNGAN (SAMA SEPERTI SEBELUMNYA) --- */}
+            {/* --- BAGIAN 1: KEUNTUNGAN (Tetap Putih) --- */}
             <section id="keuntungan" className="cp-section">
                 <div className="container">
                     <div className="cp-head">
@@ -49,12 +49,14 @@ const WhyUs = () => {
                 </div>
             </section>
 
-            {/* --- BAGIAN 2: PEMBEDA (DESAIN BARU "TECH CARD") --- */}
-            <section id="pembeda" className="cp-section cp-section--alt">
+            {/* --- BAGIAN 2: PEMBEDA (WHY US) - BACKGROUND GAMBAR --- */}
+            {/* Hapus class 'cp-section--alt' agar tidak bentrok warna background */}
+            <section id="pembeda" className="cp-section">
                 <div className="container">
                     <div className="cp-head">
-                        <span className="cp-kicker">WHY US</span>
-                        <h2 className="cp-title">Apa yang Membuat Kami <span>Berbeda</span>?</h2>
+                        <span className="cp-kicker text-glow">WHY US</span>
+                        {/* Judul diubah warnanya via CSS di bawah */}
+                        <h2 className="cp-title text-white">Apa yang Membuat Kami <span>Berbeda</span>?</h2>
                     </div>
 
                     <div className="cp-diff-grid">
@@ -63,7 +65,6 @@ const WhyUs = () => {
                         <div className="diff-card reveal" style={{ '--accent': 'var(--brand-blue)' }}>
                             <div className="diff-blob"></div>
                             <div className="diff-num">01</div>
-
                             <div className="diff-icon-box">
                                 <i className="fa-solid fa-laptop-code"></i>
                             </div>
@@ -74,10 +75,9 @@ const WhyUs = () => {
                         </div>
 
                         {/* ITEM 02 */}
-                        <div className="diff-card reveal" style={{ '--accent': '#F59E0B' }}> {/* Amber/Orange */}
+                        <div className="diff-card reveal" style={{ '--accent': '#F59E0B' }}>
                             <div className="diff-blob"></div>
                             <div className="diff-num">02</div>
-
                             <div className="diff-icon-box">
                                 <i className="fa-solid fa-microchip"></i>
                             </div>
@@ -91,7 +91,6 @@ const WhyUs = () => {
                         <div className="diff-card reveal" style={{ '--accent': 'var(--brand-green)' }}>
                             <div className="diff-blob"></div>
                             <div className="diff-num">03</div>
-
                             <div className="diff-icon-box">
                                 <i className="fa-solid fa-headset"></i>
                             </div>
@@ -105,7 +104,6 @@ const WhyUs = () => {
                         <div className="diff-card reveal" style={{ '--accent': 'var(--brand-red)' }}>
                             <div className="diff-blob"></div>
                             <div className="diff-num">04</div>
-
                             <div className="diff-icon-box">
                                 <i className="fa-solid fa-diagram-project"></i>
                             </div>
@@ -119,8 +117,31 @@ const WhyUs = () => {
                 </div>
             </section>
 
-            {/* --- STYLE JSX UNTUK KEDUA SECTION --- */}
+            {/* --- STYLE JSX --- */}
             <style jsx>{`
+                /* ========================
+                   STYLE BACKGROUND WHY US (BARU)
+                   ======================== */
+                #pembeda {
+                    /* Menggunakan gambar uploaded sebagai background */
+                    background-image: url('/img/why_us.png');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    position: relative;
+                }
+
+                /* Penyesuaian Warna Teks agar kontras dengan Background Gelap */
+                #pembeda .cp-title {
+                    color: #ffffff; /* Judul Putih */
+                    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow agar lebih terbaca */
+                }
+                
+                #pembeda .cp-kicker {
+                    color: #60A5FA; /* Biru muda terang (Blue-400) */
+                    text-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
+                }
+
                 /* ========================
                    STYLE BAGIAN KEUNTUNGAN 
                    ======================== */
@@ -164,16 +185,16 @@ const WhyUs = () => {
                 }
 
                 /* ========================
-                   STYLE BAGIAN PEMBEDA (BARU)
+                   STYLE BAGIAN PEMBEDA (CARDS)
                    ======================== */
                 .diff-card {
-                    background: #fff;
+                    background: #fff; /* Kartu tetap putih agar kontras dengan bg gelap */
                     border-radius: 20px;
                     padding: 30px 24px;
                     position: relative;
-                    overflow: hidden; /* Agar blob tidak keluar */
-                    border: 1px solid rgba(0,0,0,0.05);
-                    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+                    overflow: hidden;
+                    border: 1px solid rgba(255,255,255,0.1); /* Border lebih halus */
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* Shadow sedikit lebih gelap */
                     transition: all 0.4s ease;
                     display: flex;
                     flex-direction: column;
@@ -183,17 +204,14 @@ const WhyUs = () => {
 
                 .diff-card:hover {
                     transform: translateY(-8px);
-                    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
                     border-color: var(--accent);
                 }
 
-                /* 1. Blob Glowing di Pojok Kanan Atas */
                 .diff-blob {
                     position: absolute;
-                    top: -40px;
-                    right: -40px;
-                    width: 120px;
-                    height: 120px;
+                    top: -40px; right: -40px;
+                    width: 120px; height: 120px;
                     background: var(--accent);
                     border-radius: 50%;
                     filter: blur(50px);
@@ -202,15 +220,12 @@ const WhyUs = () => {
                     z-index: -1;
                 }
                 .diff-card:hover .diff-blob {
-                    opacity: 0.3;
-                    transform: scale(1.2);
+                    opacity: 0.3; transform: scale(1.2);
                 }
 
-                /* 2. Background Number Besar (01, 02...) */
                 .diff-num {
                     position: absolute;
-                    top: 10px;
-                    right: 20px;
+                    top: 10px; right: 20px;
                     font-size: 4rem;
                     font-weight: 900;
                     color: var(--brand-navy);
@@ -220,28 +235,22 @@ const WhyUs = () => {
                     font-family: sans-serif;
                 }
 
-                /* 3. Icon Box Styles */
                 .diff-icon-box {
-                    width: 56px;
-                    height: 56px;
+                    width: 56px; height: 56px;
                     border-radius: 14px;
                     background: #f8fafc;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    display: flex; align-items: center; justify-content: center;
                     font-size: 1.5rem;
                     color: var(--brand-navy);
                     transition: 0.3s;
                     border: 1px solid #e2e8f0;
                 }
-                /* Saat Hover, icon box mengikuti warna aksen */
                 .diff-card:hover .diff-icon-box {
                     background: var(--accent);
                     color: #fff;
                     border-color: var(--accent);
                 }
 
-                /* Typography */
                 .diff-content h3 {
                     font-size: 1.15rem;
                     font-weight: 800;

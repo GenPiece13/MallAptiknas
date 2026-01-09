@@ -135,14 +135,15 @@ const About = () => {
                         </div>
                     </div>
 
-                    {/* --- BAGIAN BAWAH: TIMELINE PERJALANAN (DIPINDAHKAN KE SINI) --- */}
+                    {/* --- BAGIAN BAWAH: TIMELINE PERJALANAN (UPDATED: BLUE THEME) --- */}
                     <div style={{ marginTop: '80px' }}>
                         <div className="cp-head">
                             <h3 className="cp-title" style={{ fontSize: '1.8rem' }}>Timeline <span>Perjalanan</span></h3>
                             <p className="cp-sub">Milestone utama dari komunitas hingga platform siap peluncuran.</p>
                         </div>
 
-                        <div className="cp-timeline reveal">
+                        {/* Tambahkan class 'blue-theme' di sini */}
+                        <div className="cp-timeline reveal blue-theme">
                             {/* Garis Penghubung */}
                             <div className="cp-timeline-line"></div>
 
@@ -280,6 +281,53 @@ const About = () => {
                     </div>
                 </div>
             </section>
+
+            {/* --- CUSTOM CSS KHUSUS TIMELINE BIRU --- */}
+            <style jsx>{`
+                /* Override Style untuk Timeline dengan Tema Biru (Sesuai Gambar) */
+                .cp-timeline.blue-theme {
+                    background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%); /* Gradasi Biru */
+                    border: none;
+                    color: white;
+                    box-shadow: 0 10px 40px rgba(2, 132, 199, 0.2);
+                }
+                
+                /* Ubah Warna Garis jadi Putih Transparan */
+                .cp-timeline.blue-theme .cp-timeline-line {
+                    background-color: rgba(255, 255, 255, 0.3);
+                }
+                
+                /* Ubah Dot jadi Putih dengan Icon Biru */
+                .cp-timeline.blue-theme .cp-timeline-dot {
+                    background: white;
+                    color: #0284c7; /* Warna Icon Biru */
+                    border-color: rgba(255, 255, 255, 0.2);
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                }
+                
+                /* Ubah Warna Teks Judul & Tahun jadi Putih */
+                .cp-timeline.blue-theme .cp-timeline-year,
+                .cp-timeline.blue-theme .cp-timeline-title {
+                    color: white;
+                    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                
+                .cp-timeline.blue-theme .cp-timeline-year {
+                    opacity: 0.9;
+                }
+
+                /* Ubah Deskripsi jadi Putih Agak Pudar */
+                .cp-timeline.blue-theme .cp-timeline-desc {
+                    color: rgba(255, 255, 255, 0.85);
+                }
+
+                /* Responsive: Sesuaikan Garis Vertikal di Mobile */
+                @media (max-width: 992px) {
+                    .cp-timeline.blue-theme::before {
+                        background: rgba(255, 255, 255, 0.3); /* Garis vertikal putih transparan */
+                    }
+                }
+            `}</style>
         </>
     );
 };

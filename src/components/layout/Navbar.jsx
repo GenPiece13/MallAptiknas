@@ -38,7 +38,6 @@ const Navbar = () => {
         { id: "misi", label: "Misi" },
         { id: "platform", label: "Platform" },
         { id: "keuntungan", label: "Keuntungan" },
-        { id: "timeline", label: "Timeline" },
         { id: "mitra", label: "Mitra" },
     ];
 
