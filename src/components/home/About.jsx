@@ -8,7 +8,7 @@ const About = () => {
             <section id="sejarah" className="cp-section cp-section--alt">
                 <div className="container">
                     <div className="cp-head">
-                        <span className="cp-kicker">SEJARAH KAMI</span>
+                        <h3 className="cp-title">SEJARAH KAMI</h3>
                         <h2 className="cp-title">Perjalanan Membangun <span>Ekosistem Teknologi</span> Indonesia</h2>
                         <p className="cp-sub">Dari akar komunitas industri TIK hingga hadirnya MallAptiknas sebagai platform terintegrasi.</p>
                     </div>
@@ -196,7 +196,7 @@ const About = () => {
             <section id="misi" className="cp-section">
                 <div className="container">
                     <div className="cp-head">
-                        <span className="cp-kicker">TENTANG KAMI</span>
+                        {/*<span className="cp-kicker">TENTANG KAMI</span>*/}
                         <h2 className="cp-title">Misi <span>Kami</span></h2>
                         <p className="cp-sub">Komitmen MallAptiknas membangun ekosistem teknologi yang lebih efisien, inklusif, dan tepercaya.</p>
                     </div>

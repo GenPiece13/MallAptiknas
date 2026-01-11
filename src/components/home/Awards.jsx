@@ -3,7 +3,6 @@ const Awards = () => {
         <section className="awards-section">
             <div className="container">
                 <div className="awards-content">
-                    <span className="section-label">Penghargaan Kami</span>
                     <h2 style={{ fontSize: '2.5rem', maxWidth: '800px', margin: '0 auto 60px auto', fontWeight: 700 }}>
                         Penghargaan atas inovasi kami yang mewarnai perjalanan MallAptiknas
                     </h2>

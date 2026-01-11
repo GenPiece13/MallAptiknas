@@ -7,47 +7,47 @@ export default function PlatformPage() {
     return (
         <div className="platform-page">
 
-            {/* SECTION 1: HERO */}
             <section className="platform-hero">
+                {/* Background Shapes */}
                 <div className="hero-bg-shapes">
                     <div className="hero-shape shape-1"></div>
                     <div className="hero-shape shape-2"></div>
                 </div>
 
-                <div className="hero-content">
-                    <div className="hero-badge animate-fade-in-up">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
-                            <path d="M9 22v-4h6v4"></path>
-                            <path d="M8 6h.01"></path>
-                            <path d="M16 6h.01"></path>
-                            <path d="M12 6h.01"></path>
-                            <path d="M12 10h.01"></path>
-                        </svg>
-                        <span>E-Commerce SCM Platform</span>
+                {/* LAYER 1: KONTEN TEKS (Posisi Terkunci di Tengah) */}
+                <div className="hero-center-stack animate-fade-in-up">
+                    <div className="hero-badge">
+                        <i className="fas fa-layer-group" style={{ fontSize: '1em' }}></i>
+                        <span>SCM Platform</span>
                     </div>
 
-                    {/* --- PERUBAHAN DI SINI: Teks diganti Logo --- */}
                     <div className="hero-logo-wrapper">
                         <img
-                            src="/img/logo mallaptiknas.png"
+                            src="/img/logo-atas-bawah.png"
                             alt="Logo Mall APTIKNAS"
                             className="platform-hero-logo"
                         />
                     </div>
-                    {/* --------------------------------------------- */}
 
-                    <p className="hero-desc">
-                        Platform Supply Chain Management untuk Industri Teknologi Indonesia. Hubungkan bisnis Anda dengan ribuan mitra.
+                    <h1 className="hero-headline">
+                        Platform Supply Chain <br />
+                        Management Teknologi
+                    </h1>
+
+                    <p className="hero-subheadline">
+                        Hubungkan bisnis Anda dengan ribuan mitra dalam satu ekosistem digital.
                     </p>
+                </div>
 
-                    <div className="hero-promo">
-                        🎉 GRATIS Keanggotaan Periode Januari - Maret 2026
-                    </div>
+                {/* LAYER 2: GAMBAR (Absolute Floating - Di Atas Semuanya) */}
+                <div className="hero-abs-image-layer animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                    <img
+                        src="/img/promo gratis keanggotaan.png"
+                        alt="Promo Gratis"
+                        className="promo-img-overlay"
+                    />
                 </div>
             </section>
-
-            {/* ... (Sisa kode SECTION 2 dan 3 tetap sama, tidak perlu diubah) ... */}
 
             {/* SECTION 2: PRICING TIERS */}
             <section className="section-wrapper">
@@ -114,7 +114,6 @@ export default function PlatformPage() {
                             "Akses harga terbaik",
                             "Kelola mitra toko",
                             "Stok real-time",
-                            "Di Takeout",
                             "Order management"
                         ]}
                     />
@@ -130,10 +129,10 @@ export default function PlatformPage() {
                         effectivePrice="Mulai Rp 25rb"
                         priceNote="Tier 1, 2, 3 (Rp 50rb-150rb)"
                         benefits={[
+                            "Free marketplace",
                             "Akses harga berjenjang",
                             "Stok real-time",
                             "Pembayaran fleksibel",
-                            "Langsung live di Marketplace",
                             "Dropship support"
                         ]}
                     />
@@ -176,6 +175,10 @@ export default function PlatformPage() {
 
 // ... (Sub Components PricingCard, DocCard, Icons tetap sama di bawah) ...
 // Sertakan juga kode Sub Components di file asli Anda
+// src/app/platform/page.js (Bagian Component PricingCard saja)
+
+// src/app/platform/page.js (Komponen PricingCard)
+
 function PricingCard({ title, subtitle, desc, icon, benefits, color, basePrice, effectivePrice, priceNote }) {
     const targetUrl = "https://stage-scm.mallaptiknas.com/login";
 
@@ -183,45 +186,52 @@ function PricingCard({ title, subtitle, desc, icon, benefits, color, basePrice, 
         <div className="pricing-card" style={{ '--theme-color': color }}>
             <div className="card-top-line"></div>
 
-            {/* Badge Promo */}
-            <div className="card-badge-free">FREE JAN-MAR</div>
+            {/* HAPUS BADGE DARI SINI (Posisi Lama) */}
 
+            {/* Header */}
             <div className="card-header-group">
                 <div className="card-icon">
                     {icon}
                 </div>
                 <div>
-                    <h3 style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--brand-navy)', margin: 0 }}>{title}</h3>
-                    <p style={{ color: '#64748b', fontSize: '0.8rem', margin: 0 }}>{subtitle}</p>
+                    <h3 className="card-title">{title}</h3>
+                    <p className="card-subtitle">{subtitle}</p>
                 </div>
             </div>
 
-            {/* Deskripsi Singkat */}
-            <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: '1.5', marginBottom: '1.5rem', minHeight: '60px' }}>
+            {/* Deskripsi */}
+            <p className="card-desc">
                 {desc}
             </p>
 
+            {/* --- POSISI BARU: BADGE DISINI --- */}
+            {/* Menggunakan margin-left: auto di CSS akan membuatnya rata kanan */}
+            <div className="card-badge-free">FREE JAN-MAR</div>
+
             {/* Bagian Harga */}
-            <div className="price-section" style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', marginBottom: '1.5rem', border: '1px dashed #e2e8f0' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-                    <span style={{ fontSize: '0.85rem', color: '#94a3b8' }}>Harga Normal:</span>
-                    <span className="card-price-strike" style={{ fontSize: '0.9rem' }}>{basePrice}/bln</span>
+            <div className="price-section">
+                {/* Baris Harga Normal */}
+                <div className="price-row-base">
+                    <span className="price-label-sm">Normal:</span>
+                    <span className="price-strike">{basePrice}/bln</span>
                 </div>
 
-                <div style={{ marginTop: '8px' }}>
-                    <p style={{ fontSize: '0.75rem', color: 'var(--brand-navy)', fontWeight: '600', marginBottom: '2px' }}>
+                {/* Baris Harga Promo */}
+                <div className="price-row-promo">
+                    <p className="price-promo-label">
                         Promo Apr-Des 2026:
                     </p>
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
-                        <span style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--theme-color)' }}>{effectivePrice}</span>
-                        <span style={{ color: '#64748b', fontSize: '0.85rem' }}>/bln</span>
+                    <div className="price-promo-val-group">
+                        <span className="price-promo-value">{effectivePrice}</span>
+                        <span className="price-promo-suffix">/bln</span>
                     </div>
-                    {priceNote && <p style={{ fontSize: '0.7rem', color: '#64748b', marginTop: '2px' }}>*{priceNote}</p>}
+                    {priceNote && <p className="price-note">*{priceNote}</p>}
                 </div>
             </div>
 
-            <div style={{ marginBottom: '2rem' }}>
-                <p className="card-benefits-title">Keuntungan Utama:</p>
+            {/* Keuntungan */}
+            <div style={{ marginBottom: '1.5rem', flex: 1 }}>
+                <p className="card-benefits-title">Keuntungan:</p>
                 {benefits.map((benefit, idx) => (
                     <div key={idx} className="benefit-item">
                         <div className="benefit-check">✔</div>
@@ -230,6 +240,7 @@ function PricingCard({ title, subtitle, desc, icon, benefits, color, basePrice, 
                 ))}
             </div>
 
+            {/* Tombol Aksi */}
             <a
                 href={targetUrl}
                 target="_blank"

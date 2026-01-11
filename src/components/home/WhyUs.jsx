@@ -54,7 +54,6 @@ const WhyUs = () => {
             <section id="pembeda" className="cp-section">
                 <div className="container">
                     <div className="cp-head">
-                        <span className="cp-kicker text-glow">WHY US</span>
                         {/* Judul diubah warnanya via CSS di bawah */}
                         <h2 className="cp-title text-white">Apa yang Membuat Kami <span>Berbeda</span>?</h2>
                     </div>
