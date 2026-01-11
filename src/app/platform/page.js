@@ -113,8 +113,8 @@ export default function PlatformPage() {
                         benefits={[
                             "Akses harga terbaik",
                             "Kelola mitra toko",
-                            "Dukungan logistik",
-                            "Monitoring jaringan",
+                            "Stok real-time",
+                            "Di Takeout",
                             "Order management"
                         ]}
                     />
