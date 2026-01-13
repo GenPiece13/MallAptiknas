@@ -8,7 +8,7 @@ const Partners = () => {
                 </div>
                 <div className="cp-partner-row reveal">
                     <div className="cp-partner">BANK INDONESIA</div>
-                    <div className="cp-partner">KEMKOMINFO</div>
+                    <div className="cp-partner">KEMKOMDIGI</div>
                     <div className="cp-partner">JNE EXPRESS</div>
                     <div className="cp-partner">POS INDONESIA</div>
                 </div>

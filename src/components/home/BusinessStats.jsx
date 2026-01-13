@@ -33,9 +33,12 @@ const BusinessStats = () => {
                             <li>Analitik bisnis canggih</li>
                         </ul>
                         <div className="card-footer">
-                            <Link href="/platform" className="card-link">
+                            <a
+                                href="/platform"
+                                className="card-link"
+                            >
                                 Pelajari SCM Platform <i className="fa-solid fa-arrow-right"></i>
-                            </Link>
+                            </a>
                         </div>
                     </div>
 
@@ -57,7 +60,6 @@ const BusinessStats = () => {
                         <div className="card-footer">
                             <a
                                 href="https://mallaptiknas.com/login"
-                                target="_blank"
                                 className="card-link"
                             >
                                 Jelajahi Marketplace <i className="fa-solid fa-arrow-right"></i>
@@ -198,24 +200,44 @@ const BusinessStats = () => {
                 /* FOOTER & LINK */
                 .card-footer {
                     margin-top: auto;
+                    width: 100%;
                 }
                 .card-link {
                     display: inline-flex;
                     align-items: center;
                     gap: 8px;
                     font-weight: 700;
-                    font-size: 1rem;
+                    font-size: 1.05rem;
                     text-decoration: none;
-                    transition: gap 0.2s;
+                    transition: all 0.3s ease;
+                    padding: 12px 24px;
+                    border-radius: 8px;
+                    cursor: pointer;
                 }
                 
                 /* Warna Link B2B */
-                .card-b2b .card-link { color: #0284C7; }
-                .card-b2b .card-link:hover { gap: 12px; color: #0369A1; }
+                .card-b2b .card-link { 
+                    color: #ffffff;
+                    background-color: #0284C7;
+                }
+                .card-b2b .card-link:hover { 
+                    gap: 12px;
+                    background-color: #0369A1;
+                    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3);
+                    transform: translateY(-2px);
+                }
 
                 /* Warna Link B2C */
-                .card-b2c .card-link { color: #0D9488; }
-                .card-b2c .card-link:hover { gap: 12px; color: #0F766E; }
+                .card-b2c .card-link { 
+                    color: #ffffff;
+                    background-color: #0D9488;
+                }
+                .card-b2c .card-link:hover { 
+                    gap: 12px;
+                    background-color: #0F766E;
+                    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.3);
+                    transform: translateY(-2px);
+                }
 
                 /* RESPONSIVE */
                 @media (max-width: 768px) {

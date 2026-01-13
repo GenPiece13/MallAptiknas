@@ -29,9 +29,13 @@ const About = () => {
                                     </div>
                                 </div>
                                 <p className="cp-text">
-                                    APTIKNAS (Asosiasi Pengusaha Teknologi Informasi & Komunikasi Nasional)
-                                    berkembang dari perjalanan panjang industri TIK Indonesia.
-                                    Pengalaman komunitas inilah yang menjadi fondasi lahirnya ekosistem MallAptiknas.
+                                    Asosiasi Pengusaha Teknologi Informasi dan Komunikasi Nasional (APTIKNAS)
+                                    merupakan organisasi profesional yang bertransformasi dari Asosiasi Pengusaha
+                                    Komputer Indonesia (APKOMINDO), yang telah berdiri sejak tahun 1991. Dengan
+                                    perjalanan lebih dari 35 tahun, APTIKNAS sesungguhnya merupakan asosiasi TIK
+                                    tertua di Indonesia yang tumbuh dan berkembang seiring dinamika serta perjalanan
+                                    panjang industri TIK nasional. Pengalaman kolektif dan kekuatan komunitas inilah
+                                    yang menjadi fondasi utama lahirnya ekosistem MallAptiknas.
                                 </p>
                                 <div className="cp-metric">
                                     <div className="cp-metric-num">35 Tahun</div>
@@ -47,10 +51,16 @@ const About = () => {
                                     </div>
                                     <div>
                                         <h3 className="cp-panel-title">Pendirian & Legalitas</h3>
-                                        <p className="cp-mini">Landasan organisasi untuk membangun ekosistem yang kredibel.</p>
+                                        <p className="cp-mini">APTIKNAS dibangun di atas landasan organisasi yang kuat dan kredibel
+                                            sebagai dasar pengembangan ekosistem nasional di bidang teknologi informasi dan komunikasi.
+                                            <br></br><br></br>APTIKNAS didirikan oleh 100 pengusaha, praktisi, dan akademisi TIK dari seluruh Indonesia,
+                                            serta dideklarasikan pada 24 Februari 2017. Organisasi ini telah memiliki legalitas resmi dari Kementerian
+                                            Hukum dan HAM RI berdasarkan SK Nomor AHU-0007054.AH.01.07.Tahun 2017 tertanggal 26 April 2017,
+                                            dan diperbarui melalui SK perubahan kepengurusan Nomor AHU-0000091.AH.01.08.Tahun 2023 tertanggal 19
+                                            Januari 2023.</p>
                                     </div>
                                 </div>
-                                <div className="cp-check-list">
+                                {/*<div className="cp-check-list">
                                     <div className="cp-check-item">
                                         <i className="fa-solid fa-circle-check"></i>
                                         <span>Dideklarasikan: <strong>24 Februari 2017</strong></span>
@@ -59,7 +69,7 @@ const About = () => {
                                         <i className="fa-solid fa-circle-check"></i>
                                         <span>SK Kemenkumham: <strong>26 April 2017</strong></span>
                                     </div>
-                                </div>
+                                </div>*/}
                             </div>
 
                             {/* CARD 3: KEPENGURUSAN */}
@@ -72,7 +82,7 @@ const About = () => {
                                     </div>
                                 </div>
                                 <ul className="cp-people">
-                                    <li><span>Ketum APTIKNAS</span><strong>Soeghiarto Santoso / HOKY</strong></li>
+                                    <li><span>Ketum APTIKNAS</span><strong> Ir. Soegiharto Santoso, S.H. / HOKY</strong></li>
                                     <li><span>Sekretaris Jenderal</span><strong>Fanky Christian</strong></li>
                                     <li><span>Bendahara</span><strong>Andri Sugondo</strong></li>
                                 </ul>
@@ -93,7 +103,10 @@ const About = () => {
                                     </div>
                                     <div>
                                         <h3 className="cp-panel-title">Solusi untuk Anggota APTIKNAS</h3>
-                                        <p className="cp-mini">Mengatasi tantangan distribusi produk IT lewat ekosistem yang terintegrasi.</p>
+                                        <p className="cp-mini">Ekosistem MallAptiknas dihadirkan sebagai solusi
+                                            strategis bagi anggota APTIKNAS dalam menjawab tantangan distribusi
+                                            produk teknologi informasi, melalui sistem yang terintegrasi,
+                                            kolaboratif, dan berkelanjutan.</p>
                                     </div>
                                 </div>
 
@@ -102,22 +115,25 @@ const About = () => {
                                     <div className="cp-mini-card">
                                         <i className="fa-solid fa-link-slash"></i>
                                         <h4>Fragmentasi Distribusi</h4>
-                                        <p>Rantai pasok terpisah-pisah dan tidak terintegrasi.</p>
+                                        <p>Rantai pasok produk teknologi informasi yang masih terfragmentasi,
+                                            berjalan secara terpisah, dan belum terintegrasi secara optimal.</p>
                                     </div>
                                     <div className="cp-mini-card">
                                         <i className="fa-solid fa-lock"></i>
                                         <h4>Akses Terbatas</h4>
-                                        <p>UMKM sulit akses ke produk IT dengan harga kompetitif.</p>
+                                        <p>Keterbatasan akses terhadap produk teknologi informasi
+                                            dengan harga yang kompetitif masih menjadi tantangan bagi pelaku UMKM.</p>
                                     </div>
                                     <div className="cp-mini-card">
                                         <i className="fa-solid fa-arrows-rotate"></i>
                                         <h4>Inefisiensi Operasional</h4>
-                                        <p>Inventory manual dan tidak terpusat.</p>
+                                        <p>Pengelolaan inventori yang masih dilakukan secara manual dan belum terpusat,
+                                            sehingga menimbulkan inefisiensi operasional.</p>
                                     </div>
                                     <div className="cp-mini-card">
                                         <i className="fa-solid fa-shield-halved"></i>
                                         <h4>Keaslian Produk</h4>
-                                        <p>Verifikasi produk original & garansi belum standar.</p>
+                                        <p>Verifikasi keaslian produk dan standar garansi yang belum terintegrasi secara optimal.</p>
                                     </div>
                                 </div>
 
@@ -127,7 +143,10 @@ const About = () => {
                                     <div className="cp-solution-content">
                                         <h4>Lahirnya MallAptiknas</h4>
                                         <p>
-                                            Dengan kompleksitas distribusi produk IT, dibentuk platform digital nasional bernama <strong>MallAptiknas</strong> untuk menyatukan seluruh rantai pasok dalam satu ekosistem.
+                                            Menyikapi kompleksitas distribusi produk teknologi informasi di Indonesia,
+                                            APTIKNAS menghadirkan sebuah platform digital nasional bernama <strong>MallAptiknas</strong>.
+                                            Platform ini dirancang untuk menyatukan seluruh rantai pasok—mulai dari produsen, distributor,
+                                            hingga mitra penjualan—ke dalam satu ekosistem yang terintegrasi, efisien, dan berkelanjutan.
                                         </p>
                                     </div>
                                 </div>
